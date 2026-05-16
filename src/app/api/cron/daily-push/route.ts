@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { courses, type CourseSlug } from "@/lib/courses";
 import { sendDailySentencePush } from "@/lib/push";
 
 export async function GET(request: Request) {
@@ -12,6 +13,16 @@ export async function GET(request: Request) {
     }
   }
 
-  const result = await sendDailySentencePush();
-  return NextResponse.json(result);
+  const results = await Promise.all(
+    Object.keys(courses).map(async (courseId) => ({
+      courseId,
+      ...(await sendDailySentencePush(courseId as CourseSlug)),
+    })),
+  );
+
+  return NextResponse.json({
+    sent: results.reduce((sum, item) => sum + item.sent, 0),
+    failed: results.reduce((sum, item) => sum + item.failed, 0),
+    results,
+  });
 }

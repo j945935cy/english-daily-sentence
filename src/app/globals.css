@@ -384,6 +384,24 @@ textarea {
   --soft: #eef8ef;
 }
 
+.motivation-shell {
+  --accent: #8a4f12;
+  --accent-dark: #6b3c0d;
+  --warm: #b14d35;
+  --soft: #fff4e6;
+}
+
+.grammar-shell {
+  --accent: #5a6784;
+  --accent-dark: #38445d;
+  --warm: #9b4d6a;
+  --soft: #f1f4fb;
+}
+
+.grammar-title {
+  font-size: clamp(1.8rem, 4.3vw, 4rem);
+}
+
 .portal-shell {
   display: grid;
   gap: 28px;
@@ -418,7 +436,7 @@ textarea {
 
 .portal-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -451,6 +469,10 @@ textarea {
 
 .portal-card.motivation::before {
   background: #8a4f12;
+}
+
+.portal-card.grammar::before {
+  background: #5a6784;
 }
 
 .portal-card span {

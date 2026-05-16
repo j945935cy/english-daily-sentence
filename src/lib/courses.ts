@@ -1,6 +1,7 @@
 export const DEFAULT_COURSE = "daily-english";
 export const KIDS_COURSE = "kids-english";
 export const MOTIVATION_COURSE = "motivational-english";
+export const GRAMMAR_COURSE = "grammar-english";
 
 export const courses = {
   [DEFAULT_COURSE]: {
@@ -20,6 +21,12 @@ export const courses = {
     slug: MOTIVATION_COURSE,
     name: "勵志英語",
     description: "每天一句短而有力量的英文，陪你練習語感，也練習往前走。",
+  },
+  [GRAMMAR_COURSE]: {
+    id: GRAMMAR_COURSE,
+    slug: GRAMMAR_COURSE,
+    name: "每日一文法",
+    description: "每天一個英文文法小單元，用規則、例句與練習慢慢建立句子能力。",
   },
 } as const;
 

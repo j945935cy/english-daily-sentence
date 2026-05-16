@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { DEFAULT_COURSE, KIDS_COURSE, MOTIVATION_COURSE } from "@/lib/courses";
+import { DEFAULT_COURSE, GRAMMAR_COURSE, KIDS_COURSE, MOTIVATION_COURSE } from "@/lib/courses";
 
 type Props = {
   defaultDate?: string;
@@ -33,14 +33,14 @@ export function AdminSentenceForm({ defaultDate }: Props) {
       return;
     }
 
-    setMessage("已儲存每日句子。");
+    setMessage("已儲存每日內容。");
   }
 
   return (
     <form className="admin-form" onSubmit={submit}>
       <div>
         <p className="eyebrow">Admin</p>
-        <h2>新增或更新每日一句</h2>
+        <h2>新增或更新每日內容</h2>
       </div>
 
       <label>
@@ -49,6 +49,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
           <option value={DEFAULT_COURSE}>每日一句英文</option>
           <option value={KIDS_COURSE}>小學生入門英語</option>
           <option value={MOTIVATION_COURSE}>勵志英語</option>
+          <option value={GRAMMAR_COURSE}>每日一文法</option>
         </select>
       </label>
       <label>
@@ -56,11 +57,11 @@ export function AdminSentenceForm({ defaultDate }: Props) {
         <input name="publishDate" type="date" defaultValue={defaultDate} required />
       </label>
       <label>
-        英文句子
+        英文句子或文法標題
         <input name="sentence" required />
       </label>
       <label>
-        中文翻譯
+        中文翻譯或說明
         <textarea name="translation" required />
       </label>
       <label>
@@ -68,7 +69,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
         <textarea name="grammarNote" required />
       </label>
       <label>
-        自然用法
+        用法或練習
         <textarea name="usageNote" required />
       </label>
       <label>
@@ -81,7 +82,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
       </label>
 
       <button type="submit" className="primary-button" disabled={loading}>
-        {loading ? "儲存中" : "儲存句子"}
+        {loading ? "儲存中" : "儲存內容"}
       </button>
       {message ? <p className="form-message">{message}</p> : null}
     </form>

@@ -10,6 +10,7 @@
     "seed:365": "node scripts/seed-365-sentences.mjs",
     "seed:kids-365": "node scripts/seed-kids-365-sentences.mjs",
     "seed:motivation-365": "node scripts/seed-motivation-365-sentences.mjs",
+    "seed:grammar-365": "node scripts/seed-grammar-365-sentences.mjs",
     "start": "next start",
     "lint": "eslint"
   },
