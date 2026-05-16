@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
+import { getViewStats } from "@/lib/analytics";
 import { getAllSentences } from "@/lib/sentences";
 import { AdminSentenceForm } from "../ui/admin-sentence-form";
+import { AnalyticsPanel } from "../ui/analytics-panel";
 import { PushTestPanel } from "../ui/push-test-panel";
 
 export const dynamic = "force-dynamic";
@@ -18,7 +20,7 @@ export default async function AdminPage() {
     redirect("/");
   }
 
-  const sentences = await getAllSentences();
+  const [sentences, stats] = await Promise.all([getAllSentences(), getViewStats()]);
   const today = new Date().toISOString().slice(0, 10);
 
   return (
@@ -34,7 +36,10 @@ export default async function AdminPage() {
       </section>
 
       <section className="admin-layout">
-        <AdminSentenceForm defaultDate={today} />
+        <div className="admin-main-column">
+          <AnalyticsPanel stats={stats} />
+          <AdminSentenceForm defaultDate={today} />
+        </div>
         <PushTestPanel />
       </section>
 

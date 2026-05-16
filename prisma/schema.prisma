@@ -59,3 +59,14 @@ model LearningHistory {
 
   @@unique([userId, sentenceId])
 }
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  visitorId String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([path])
+}

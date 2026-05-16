@@ -100,4 +100,18 @@ async function setupDatabase() {
   await prisma.$executeRawUnsafe(
     `CREATE UNIQUE INDEX IF NOT EXISTS "LearningHistory_userId_sentenceId_key" ON "LearningHistory"("userId", "sentenceId");`,
   );
+
+  await prisma.$executeRawUnsafe(`
+    CREATE TABLE IF NOT EXISTS "PageView" (
+      "id" TEXT NOT NULL PRIMARY KEY,
+      "path" TEXT NOT NULL,
+      "visitorId" TEXT,
+      "userAgent" TEXT,
+      "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+  await prisma.$executeRawUnsafe(
+    `CREATE INDEX IF NOT EXISTS "PageView_createdAt_idx" ON "PageView"("createdAt");`,
+  );
+  await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PageView_path_idx" ON "PageView"("path");`);
 }

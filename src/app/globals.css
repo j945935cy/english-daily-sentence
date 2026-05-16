@@ -320,6 +320,11 @@ textarea {
   align-items: start;
 }
 
+.admin-main-column {
+  display: grid;
+  gap: 20px;
+}
+
 .admin-form {
   border-radius: 8px;
   padding: 24px;
@@ -346,6 +351,67 @@ textarea {
 .tool-panel p {
   color: var(--muted);
   line-height: 1.7;
+}
+
+.analytics-panel {
+  gap: 18px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stats-grid div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  padding: 14px;
+}
+
+.stats-grid span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.stats-grid strong {
+  color: #10272a;
+  display: block;
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.analytics-list {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+}
+
+.analytics-list h3 {
+  font-size: 0.95rem;
+}
+
+.analytics-list p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.analytics-list p span {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.analytics-list p strong {
+  color: var(--accent-dark);
 }
 
 .list-section,
@@ -431,6 +497,7 @@ textarea {
   }
 
   .explain-grid,
+  .stats-grid,
   .mini-grid,
   .admin-form {
     grid-template-columns: 1fr;

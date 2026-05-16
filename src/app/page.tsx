@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <main className="shell">
-      <section className="topbar" aria-label="site navigation">
+      <section className="topbar" aria-label="網站導覽">
         <div>
           <p className="eyebrow">Daily English</p>
           <h1>每日一句英文</h1>
@@ -23,7 +23,7 @@ export default async function Home() {
         <AuthPanel user={user} />
       </section>
 
-      <nav className="main-nav" aria-label="main pages">
+      <nav className="main-nav" aria-label="主要頁面">
         <Link href="/">今日句子</Link>
         <Link href="/history">歷史句子</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
