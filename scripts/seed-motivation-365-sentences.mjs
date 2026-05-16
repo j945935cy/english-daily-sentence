@@ -128,8 +128,8 @@ const repeatNotes = [
 ];
 
 function dateStringFromStart(index) {
-  const date = new Date("2026-05-16T00:00:00+08:00");
-  date.setDate(date.getDate() + index);
+  const date = new Date(Date.UTC(2026, 4, 16));
+  date.setUTCDate(date.getUTCDate() + index);
   return date.toISOString().slice(0, 10);
 }
 

@@ -48,3 +48,31 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ sentence });
 }
+
+export async function DELETE(request: Request) {
+  await ensureDatabase();
+
+  const user = await getCurrentUser();
+
+  if (!user?.isAdmin) {
+    return NextResponse.json({ error: "需要管理員權限。" }, { status: 403 });
+  }
+
+  const body = await request.json();
+  const courseId = normalizeCourseSlug(body.courseId);
+  const publishDate = new Date(String(body.publishDate));
+  publishDate.setHours(0, 0, 0, 0);
+
+  if (Number.isNaN(publishDate.getTime())) {
+    return NextResponse.json({ error: "日期格式不正確。" }, { status: 400 });
+  }
+
+  const result = await prisma.dailySentence.deleteMany({
+    where: {
+      courseId,
+      publishDate,
+    },
+  });
+
+  return NextResponse.json({ deleted: result.count });
+}
