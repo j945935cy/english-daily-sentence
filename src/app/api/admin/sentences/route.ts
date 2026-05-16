@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { ensureDatabase, prisma } from "@/lib/prisma";
+import { normalizeCourseSlug } from "@/lib/sentences";
 
 export async function POST(request: Request) {
   await ensureDatabase();
@@ -12,6 +13,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
+  const courseId = normalizeCourseSlug(body.courseId);
   const publishDate = new Date(String(body.publishDate));
   publishDate.setHours(0, 0, 0, 0);
 
@@ -23,7 +25,7 @@ export async function POST(request: Request) {
   }
 
   const sentence = await prisma.dailySentence.upsert({
-    where: { publishDate },
+    where: { courseId_publishDate: { courseId, publishDate } },
     update: {
       sentence: sentenceText,
       translation,
@@ -33,6 +35,7 @@ export async function POST(request: Request) {
       example: String(body.example ?? "").trim(),
     },
     create: {
+      courseId,
       sentence: sentenceText,
       translation,
       grammarNote: String(body.grammarNote ?? "").trim(),

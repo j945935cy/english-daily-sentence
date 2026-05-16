@@ -4,6 +4,7 @@ import { useState } from "react";
 
 type Props = {
   isSignedIn: boolean;
+  courseId?: string;
 };
 
 function urlBase64ToUint8Array(base64String: string) {
@@ -13,7 +14,7 @@ function urlBase64ToUint8Array(base64String: string) {
   return Uint8Array.from([...rawData].map((char) => char.charCodeAt(0)));
 }
 
-export function PushButton({ isSignedIn }: Props) {
+export function PushButton({ isSignedIn, courseId = "daily-english" }: Props) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -56,7 +57,7 @@ export function PushButton({ isSignedIn }: Props) {
       const response = await fetch("/api/push/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(subscription),
+        body: JSON.stringify({ ...subscription.toJSON(), courseId }),
       });
 
       setMessage(response.ok ? "已訂閱每日推送。" : "訂閱失敗，請重新登入後再試。");

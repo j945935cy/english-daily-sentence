@@ -8,6 +8,7 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "seed:365": "node scripts/seed-365-sentences.mjs",
+    "seed:kids-365": "node scripts/seed-kids-365-sentences.mjs",
     "start": "next start",
     "lint": "eslint"
   },

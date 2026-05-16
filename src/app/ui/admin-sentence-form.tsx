@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { DEFAULT_COURSE, KIDS_COURSE } from "@/lib/courses";
 
 type Props = {
   defaultDate?: string;
@@ -42,6 +43,13 @@ export function AdminSentenceForm({ defaultDate }: Props) {
         <h2>新增或更新每日一句</h2>
       </div>
 
+      <label>
+        課程
+        <select name="courseId" defaultValue={DEFAULT_COURSE}>
+          <option value={DEFAULT_COURSE}>每日一句英文</option>
+          <option value={KIDS_COURSE}>小學生入門英語</option>
+        </select>
+      </label>
       <label>
         發布日期
         <input name="publishDate" type="date" defaultValue={defaultDate} required />

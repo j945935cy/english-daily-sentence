@@ -1,5 +1,6 @@
 import webpush from "web-push";
 import { ensureDatabase, prisma } from "./prisma";
+import { DEFAULT_COURSE, type CourseSlug } from "./courses";
 
 export function configureWebPush() {
   const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
@@ -14,7 +15,7 @@ export function configureWebPush() {
   return true;
 }
 
-export async function sendDailySentencePush() {
+export async function sendDailySentencePush(courseId: CourseSlug = DEFAULT_COURSE) {
   await ensureDatabase();
 
   if (!configureWebPush()) {
@@ -24,7 +25,10 @@ export async function sendDailySentencePush() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const sentence = await prisma.dailySentence.findFirst({
-    where: { publishDate: { lte: today } },
+    where: {
+      courseId,
+      publishDate: { lte: today },
+    },
     orderBy: { publishDate: "desc" },
   });
 
@@ -32,7 +36,9 @@ export async function sendDailySentencePush() {
     return { sent: 0, failed: 0, skipped: true };
   }
 
-  const subscriptions = await prisma.pushSubscription.findMany();
+  const subscriptions = await prisma.pushSubscription.findMany({
+    where: { courseId },
+  });
   let sent = 0;
   let failed = 0;
 
@@ -45,9 +51,9 @@ export async function sendDailySentencePush() {
             keys: { p256dh: item.p256dh, auth: item.auth },
           },
           JSON.stringify({
-            title: "今日一句英文",
+            title: courseId === DEFAULT_COURSE ? "今日一句英文" : "今日小學生英語",
             body: sentence.sentence,
-            url: "/",
+            url: courseId === DEFAULT_COURSE ? "/" : "/kids",
           }),
         );
         sent += 1;

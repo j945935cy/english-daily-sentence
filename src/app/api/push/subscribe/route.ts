@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { ensureDatabase, prisma } from "@/lib/prisma";
+import { normalizeCourseSlug } from "@/lib/sentences";
 
 export async function POST(request: Request) {
   await ensureDatabase();
@@ -12,6 +13,7 @@ export async function POST(request: Request) {
   }
 
   const subscription = await request.json();
+  const courseId = normalizeCourseSlug(subscription.courseId);
   const endpoint = String(subscription.endpoint ?? "");
   const p256dh = String(subscription.keys?.p256dh ?? "");
   const auth = String(subscription.keys?.auth ?? "");
@@ -22,8 +24,8 @@ export async function POST(request: Request) {
 
   await prisma.pushSubscription.upsert({
     where: { endpoint },
-    update: { userId: user.id, p256dh, auth },
-    create: { userId: user.id, endpoint, p256dh, auth },
+    update: { userId: user.id, courseId, p256dh, auth },
+    create: { userId: user.id, courseId, endpoint, p256dh, auth },
   });
 
   return NextResponse.json({ ok: true });

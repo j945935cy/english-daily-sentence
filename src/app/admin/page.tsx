@@ -59,7 +59,7 @@ export default async function AdminPage() {
                 })}
               </time>
               <h3>{item.sentence}</h3>
-              <p>{item.translation}</p>
+              <p>{item.course.name} · {item.translation}</p>
             </article>
           ))}
         </div>

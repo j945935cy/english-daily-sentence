@@ -38,6 +38,28 @@ export async function ensureDatabase() {
 
 async function setupDatabase() {
   await prisma.$executeRawUnsafe(`
+    CREATE TABLE IF NOT EXISTS "Course" (
+      "id" TEXT NOT NULL PRIMARY KEY,
+      "slug" TEXT NOT NULL,
+      "name" TEXT NOT NULL,
+      "description" TEXT NOT NULL,
+      "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+  await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX IF NOT EXISTS "Course_slug_key" ON "Course"("slug");`);
+  await prisma.$executeRawUnsafe(`
+    INSERT INTO "Course" ("id", "slug", "name", "description")
+    VALUES
+      ('daily-english', 'daily-english', '每日一句英文', '每天一句實用英文，累積自然語感。'),
+      ('kids-english', 'kids-english', '小學生入門英語', '短句、基礎單字和生活化例句，適合小學生每天學一點。')
+    ON CONFLICT ("id") DO UPDATE SET
+      "slug" = EXCLUDED."slug",
+      "name" = EXCLUDED."name",
+      "description" = EXCLUDED."description";
+  `);
+
+  await prisma.$executeRawUnsafe(`
     CREATE TABLE IF NOT EXISTS "User" (
       "id" TEXT NOT NULL PRIMARY KEY,
       "email" TEXT NOT NULL,
@@ -53,6 +75,7 @@ async function setupDatabase() {
   await prisma.$executeRawUnsafe(`
     CREATE TABLE IF NOT EXISTS "DailySentence" (
       "id" TEXT NOT NULL PRIMARY KEY,
+      "courseId" TEXT NOT NULL DEFAULT 'daily-english',
       "sentence" TEXT NOT NULL,
       "translation" TEXT NOT NULL,
       "grammarNote" TEXT NOT NULL,
@@ -65,13 +88,20 @@ async function setupDatabase() {
     );
   `);
   await prisma.$executeRawUnsafe(
-    `CREATE UNIQUE INDEX IF NOT EXISTS "DailySentence_publishDate_key" ON "DailySentence"("publishDate");`,
+    `ALTER TABLE "DailySentence" ADD COLUMN IF NOT EXISTS "courseId" TEXT NOT NULL DEFAULT 'daily-english';`,
   );
+  await prisma.$executeRawUnsafe(`UPDATE "DailySentence" SET "courseId" = 'daily-english' WHERE "courseId" IS NULL;`);
+  await prisma.$executeRawUnsafe(`DROP INDEX IF EXISTS "DailySentence_publishDate_key";`);
+  await prisma.$executeRawUnsafe(
+    `CREATE UNIQUE INDEX IF NOT EXISTS "DailySentence_courseId_publishDate_key" ON "DailySentence"("courseId", "publishDate");`,
+  );
+  await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "DailySentence_courseId_idx" ON "DailySentence"("courseId");`);
 
   await prisma.$executeRawUnsafe(`
     CREATE TABLE IF NOT EXISTS "PushSubscription" (
       "id" TEXT NOT NULL PRIMARY KEY,
       "userId" TEXT NOT NULL,
+      "courseId" TEXT NOT NULL DEFAULT 'daily-english',
       "endpoint" TEXT NOT NULL,
       "p256dh" TEXT NOT NULL,
       "auth" TEXT NOT NULL,
@@ -81,6 +111,9 @@ async function setupDatabase() {
         FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
     );
   `);
+  await prisma.$executeRawUnsafe(
+    `ALTER TABLE "PushSubscription" ADD COLUMN IF NOT EXISTS "courseId" TEXT NOT NULL DEFAULT 'daily-english';`,
+  );
   await prisma.$executeRawUnsafe(
     `CREATE UNIQUE INDEX IF NOT EXISTS "PushSubscription_endpoint_key" ON "PushSubscription"("endpoint");`,
   );

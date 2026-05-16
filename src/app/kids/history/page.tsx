@@ -1,20 +1,20 @@
 import Link from "next/link";
-import { DEFAULT_COURSE, getAllSentences } from "@/lib/sentences";
+import { getAllSentences, KIDS_COURSE } from "@/lib/sentences";
 
 export const dynamic = "force-dynamic";
 
-export default async function HistoryPage() {
-  const sentences = await getAllSentences(DEFAULT_COURSE);
+export default async function KidsHistoryPage() {
+  const sentences = await getAllSentences(KIDS_COURSE);
 
   return (
-    <main className="shell">
+    <main className="shell kids-shell">
       <section className="page-heading">
         <div>
-          <p className="eyebrow">Archive</p>
-          <h1>歷史句子</h1>
+          <p className="eyebrow">Kids Archive</p>
+          <h1>小學生英語歷史句子</h1>
         </div>
-        <Link href="/" className="ghost-button">
-          回到首頁
+        <Link href="/kids" className="ghost-button">
+          回到小學生版
         </Link>
       </section>
 
@@ -33,7 +33,7 @@ export default async function HistoryPage() {
             <p className="translation">{item.translation}</p>
             <div className="mini-grid">
               <div>
-                <strong>文法</strong>
+                <strong>句型</strong>
                 <p>{item.grammarNote}</p>
               </div>
               <div>

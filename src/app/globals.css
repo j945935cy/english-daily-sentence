@@ -232,7 +232,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -334,11 +335,18 @@ textarea {
 }
 
 .admin-form > div,
-.admin-form label:nth-of-type(2),
-.admin-form label:nth-of-type(n + 3),
+.admin-form label:nth-of-type(3),
+.admin-form label:nth-of-type(n + 4),
 .admin-form .primary-button,
 .admin-form .form-message {
   grid-column: 1 / -1;
+}
+
+.kids-shell {
+  --accent: #1d7a46;
+  --accent-dark: #155c37;
+  --warm: #c0521b;
+  --soft: #eef8ef;
 }
 
 .tool-panel {

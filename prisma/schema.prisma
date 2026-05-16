@@ -24,29 +24,47 @@ model User {
   learningHistory   LearningHistory[]
 }
 
+model Course {
+  id                String             @id
+  slug              String             @unique
+  name              String
+  description       String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  dailySentences    DailySentence[]
+  pushSubscriptions PushSubscription[]
+}
+
 model DailySentence {
   id              String            @id @default(cuid())
+  courseId        String            @default("daily-english")
   sentence        String
   translation     String
   grammarNote     String
   usageNote       String
   vocabulary      String
   example         String
-  publishDate     DateTime          @unique
+  publishDate     DateTime
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
+  course          Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
   learningHistory LearningHistory[]
+
+  @@unique([courseId, publishDate])
+  @@index([courseId])
 }
 
 model PushSubscription {
   id        String   @id @default(cuid())
   userId    String
+  courseId  String   @default("daily-english")
   endpoint  String   @unique
   p256dh     String
   auth      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model LearningHistory {
