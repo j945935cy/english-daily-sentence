@@ -33,7 +33,7 @@ export function PushButton({ isSignedIn }: Props) {
     const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
 
     if (!publicKey) {
-      setMessage("尚未設定 VAPID public key，請先完成 .env 設定。");
+      setMessage("尚未設定 VAPID public key，請先完成環境變數設定。");
       return;
     }
 
@@ -60,6 +60,8 @@ export function PushButton({ isSignedIn }: Props) {
       });
 
       setMessage(response.ok ? "已訂閱每日推送。" : "訂閱失敗，請重新登入後再試。");
+    } catch {
+      setMessage("訂閱失敗，請確認瀏覽器通知權限與 HTTPS 狀態。");
     } finally {
       setLoading(false);
     }

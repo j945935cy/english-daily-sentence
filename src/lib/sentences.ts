@@ -35,3 +35,9 @@ export async function getRecentSentences(limit = 7) {
     take: limit,
   });
 }
+
+export async function getAllSentences() {
+  return prisma.dailySentence.findMany({
+    orderBy: { publishDate: "desc" },
+  });
+}

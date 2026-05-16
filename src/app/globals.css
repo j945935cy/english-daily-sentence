@@ -55,7 +55,34 @@ a {
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
+  margin-bottom: 18px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 28px;
+}
+
+.main-nav a {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--accent-dark);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+  padding: 0 14px;
 }
 
 .eyebrow {
@@ -87,7 +114,9 @@ h2 {
 .lesson,
 .side-panel,
 .auth-card,
-.admin-form {
+.admin-form,
+.tool-panel,
+.history-card {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 20px 60px rgba(30, 37, 40, 0.08);
@@ -274,8 +303,21 @@ textarea {
   line-height: 1.45;
 }
 
-.admin-band {
-  margin-top: 20px;
+.history-list.compact .history-item {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.history-list.compact .history-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  align-items: start;
 }
 
 .admin-form {
@@ -294,9 +336,88 @@ textarea {
   grid-column: 1 / -1;
 }
 
+.tool-panel {
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+}
+
+.tool-panel p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.list-section,
+.history-page-list {
+  margin-top: 22px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.history-page-list {
+  display: grid;
+  gap: 16px;
+}
+
+.history-card {
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.history-card time {
+  color: var(--warm);
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.history-card h2,
+.history-card h3 {
+  color: #10272a;
+  font-size: clamp(1.35rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.history-card p {
+  line-height: 1.7;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.mini-grid div {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.mini-grid strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 860px) {
   .topbar,
-  .learning-layout {
+  .page-heading,
+  .learning-layout,
+  .admin-layout {
     display: grid;
     grid-template-columns: 1fr;
   }
@@ -305,7 +426,12 @@ textarea {
     width: 100%;
   }
 
+  .main-nav {
+    flex-wrap: wrap;
+  }
+
   .explain-grid,
+  .mini-grid,
   .admin-form {
     grid-template-columns: 1fr;
   }

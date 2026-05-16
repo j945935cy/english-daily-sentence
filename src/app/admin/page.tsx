@@ -1,0 +1,62 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/auth";
+import { getAllSentences } from "@/lib/sentences";
+import { AdminSentenceForm } from "../ui/admin-sentence-form";
+import { PushTestPanel } from "../ui/push-test-panel";
+
+export default async function AdminPage() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect("/");
+  }
+
+  if (!user.isAdmin) {
+    redirect("/");
+  }
+
+  const sentences = await getAllSentences();
+  const today = new Date().toISOString().slice(0, 10);
+
+  return (
+    <main className="shell">
+      <section className="page-heading">
+        <div>
+          <p className="eyebrow">Admin</p>
+          <h1>管理後台</h1>
+        </div>
+        <Link href="/" className="ghost-button">
+          回到首頁
+        </Link>
+      </section>
+
+      <section className="admin-layout">
+        <AdminSentenceForm defaultDate={today} />
+        <PushTestPanel />
+      </section>
+
+      <section className="list-section">
+        <div className="section-title">
+          <h2>已建立句子</h2>
+          <span>{sentences.length} 筆</span>
+        </div>
+        <div className="history-list">
+          {sentences.map((item) => (
+            <article key={item.id} className="history-card">
+              <time>
+                {item.publishDate.toLocaleDateString("zh-TW", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              <h3>{item.sentence}</h3>
+              <p>{item.translation}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}

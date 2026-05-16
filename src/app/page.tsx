@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { getRecentSentences, getTodaySentence } from "@/lib/sentences";
 import { AuthPanel } from "./ui/auth-panel";
 import { PushButton } from "./ui/push-button";
-import { AdminSentenceForm } from "./ui/admin-sentence-form";
 
 export default async function Home() {
   const [user, todaySentence, recentSentences] = await Promise.all([
@@ -13,13 +13,19 @@ export default async function Home() {
 
   return (
     <main className="shell">
-      <section className="topbar" aria-label="網站導覽">
+      <section className="topbar" aria-label="site navigation">
         <div>
           <p className="eyebrow">Daily English</p>
           <h1>每日一句英文</h1>
         </div>
         <AuthPanel user={user} />
       </section>
+
+      <nav className="main-nav" aria-label="main pages">
+        <Link href="/">今日句子</Link>
+        <Link href="/history">歷史句子</Link>
+        {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
+      </nav>
 
       <section className="learning-layout">
         <article className="lesson">
@@ -56,15 +62,15 @@ export default async function Home() {
         <aside className="side-panel">
           <div className="panel-block">
             <h2>手機推送</h2>
-            <p>登入後可訂閱每日一句英文通知，網站會儲存你的推播訂閱資料。</p>
+            <p>登入後可訂閱每日一句英文通知。正式部署到 HTTPS 後，手機才能穩定接收 Web Push。</p>
             <PushButton isSignedIn={Boolean(user)} />
           </div>
 
           <div className="panel-block">
             <h2>最近句子</h2>
-            <div className="history-list">
+            <div className="history-list compact">
               {recentSentences.map((item) => (
-                <div key={item.id} className="history-item">
+                <Link key={item.id} href="/history" className="history-item">
                   <time>
                     {item.publishDate.toLocaleDateString("zh-TW", {
                       month: "numeric",
@@ -72,18 +78,12 @@ export default async function Home() {
                     })}
                   </time>
                   <p>{item.sentence}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </aside>
       </section>
-
-      {user?.isAdmin ? (
-        <section className="admin-band">
-          <AdminSentenceForm />
-        </section>
-      ) : null}
     </main>
   );
 }

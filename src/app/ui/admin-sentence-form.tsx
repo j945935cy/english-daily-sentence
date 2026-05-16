@@ -2,7 +2,11 @@
 
 import { FormEvent, useState } from "react";
 
-export function AdminSentenceForm() {
+type Props = {
+  defaultDate?: string;
+};
+
+export function AdminSentenceForm({ defaultDate }: Props) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -29,19 +33,18 @@ export function AdminSentenceForm() {
     }
 
     setMessage("已儲存每日句子。");
-    window.location.reload();
   }
 
   return (
     <form className="admin-form" onSubmit={submit}>
       <div>
         <p className="eyebrow">Admin</p>
-        <h2>新增每日一句</h2>
+        <h2>新增或更新每日一句</h2>
       </div>
 
       <label>
         發布日期
-        <input name="publishDate" type="date" required />
+        <input name="publishDate" type="date" defaultValue={defaultDate} required />
       </label>
       <label>
         英文句子

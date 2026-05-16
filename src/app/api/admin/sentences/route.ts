@@ -13,23 +13,30 @@ export async function POST(request: Request) {
   const publishDate = new Date(String(body.publishDate));
   publishDate.setHours(0, 0, 0, 0);
 
+  const sentenceText = String(body.sentence ?? "").trim();
+  const translation = String(body.translation ?? "").trim();
+
+  if (!sentenceText || !translation || Number.isNaN(publishDate.getTime())) {
+    return NextResponse.json({ error: "請填寫有效日期、英文句子與中文翻譯。" }, { status: 400 });
+  }
+
   const sentence = await prisma.dailySentence.upsert({
     where: { publishDate },
     update: {
-      sentence: String(body.sentence ?? ""),
-      translation: String(body.translation ?? ""),
-      grammarNote: String(body.grammarNote ?? ""),
-      usageNote: String(body.usageNote ?? ""),
-      vocabulary: String(body.vocabulary ?? ""),
-      example: String(body.example ?? ""),
+      sentence: sentenceText,
+      translation,
+      grammarNote: String(body.grammarNote ?? "").trim(),
+      usageNote: String(body.usageNote ?? "").trim(),
+      vocabulary: String(body.vocabulary ?? "").trim(),
+      example: String(body.example ?? "").trim(),
     },
     create: {
-      sentence: String(body.sentence ?? ""),
-      translation: String(body.translation ?? ""),
-      grammarNote: String(body.grammarNote ?? ""),
-      usageNote: String(body.usageNote ?? ""),
-      vocabulary: String(body.vocabulary ?? ""),
-      example: String(body.example ?? ""),
+      sentence: sentenceText,
+      translation,
+      grammarNote: String(body.grammarNote ?? "").trim(),
+      usageNote: String(body.usageNote ?? "").trim(),
+      vocabulary: String(body.vocabulary ?? "").trim(),
+      example: String(body.example ?? "").trim(),
       publishDate,
     },
   });
