@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getAllSentences } from "@/lib/sentences";
 
+export const dynamic = "force-dynamic";
+
 export default async function HistoryPage() {
   const sentences = await getAllSentences();
 
