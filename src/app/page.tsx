@@ -1,94 +1,66 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
-import { DEFAULT_COURSE, getRecentSentences, getTodaySentence } from "@/lib/sentences";
-import { AuthPanel } from "./ui/auth-panel";
-import { PushButton } from "./ui/push-button";
-import { SpeakButton } from "./ui/speak-button";
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
-  const [user, todaySentence, recentSentences] = await Promise.all([
-    getCurrentUser(),
-    getTodaySentence(DEFAULT_COURSE),
-    getRecentSentences(DEFAULT_COURSE),
-  ]);
+const sites = [
+  {
+    href: "/daily",
+    label: "Daily English",
+    title: "每日一句英文",
+    description: "適合一般學習者，每天一個實用英文句子，搭配文法、用法、單字與朗讀。",
+    sample: "I can review new words a little better every day.",
+    tone: "daily",
+  },
+  {
+    href: "/kids",
+    label: "Kids English",
+    title: "小學生入門英語",
+    description: "短句、簡單、生活化，適合小學生從課堂與日常用語開始建立英文信心。",
+    sample: "Good morning.",
+    tone: "kids",
+  },
+  {
+    href: "/motivation",
+    label: "Motivational English",
+    title: "勵志英語",
+    description: "每天一句短而有力量的英文，練習語感，也把鼓勵放進每天的節奏。",
+    sample: "Small steps lead to big changes.",
+    tone: "motivation",
+  },
+];
+
+export default async function PortalPage() {
+  const user = await getCurrentUser();
 
   return (
-    <main className="shell">
-      <section className="topbar" aria-label="網站導覽">
+    <main className="shell portal-shell">
+      <section className="portal-hero">
         <div>
-          <p className="eyebrow">Daily English</p>
-          <h1>每日一句英文</h1>
+          <p className="eyebrow">English Daily Hub</p>
+          <h1>每日英文學習入口站</h1>
+          <p>
+            這裡整合三個每日一句英文版本。選一個適合今天狀態的入口，讀一句、聽一句，慢慢累積英文感覺。
+          </p>
         </div>
-        <AuthPanel user={user} />
+        <nav className="main-nav portal-nav" aria-label="主要頁面">
+          <Link href="/daily">每日一句英文</Link>
+          <Link href="/kids">小學生入門英語</Link>
+          <Link href="/motivation">勵志英語</Link>
+          {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
+        </nav>
       </section>
 
-      <nav className="main-nav" aria-label="主要頁面">
-        <Link href="/">今日句子</Link>
-        <Link href="/history">歷史句子</Link>
-        <Link href="/kids">小學生入門英語</Link>
-        <Link href="/motivation">勵志英語</Link>
-        {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
-      </nav>
-
-      <section className="learning-layout">
-        <article className="lesson">
-          <div className="lesson-date">
-            {todaySentence.publishDate.toLocaleDateString("zh-TW", {
-              month: "long",
-              day: "numeric",
-              weekday: "long",
-            })}
-          </div>
-          <p className="sentence">{todaySentence.sentence}</p>
-          <SpeakButton text={todaySentence.sentence} />
-          <p className="translation">{todaySentence.translation}</p>
-
-          <div className="explain-grid">
-            <section>
-              <h2>文法重點</h2>
-              <p>{todaySentence.grammarNote}</p>
-            </section>
-            <section>
-              <h2>自然用法</h2>
-              <p>{todaySentence.usageNote}</p>
-            </section>
-            <section>
-              <h2>單字片語</h2>
-              <p>{todaySentence.vocabulary}</p>
-            </section>
-            <section>
-              <h2>延伸例句</h2>
-              <p>{todaySentence.example}</p>
-            </section>
-          </div>
-        </article>
-
-        <aside className="side-panel">
-          <div className="panel-block">
-            <h2>手機推送</h2>
-            <p>登入後可訂閱每日一句英文通知。正式部署到 HTTPS 後，手機才能穩定接收 Web Push。</p>
-            <PushButton isSignedIn={Boolean(user)} />
-          </div>
-
-          <div className="panel-block">
-            <h2>最近句子</h2>
-            <div className="history-list compact">
-              {recentSentences.map((item) => (
-                <Link key={item.id} href="/history" className="history-item">
-                  <time>
-                    {item.publishDate.toLocaleDateString("zh-TW", {
-                      month: "numeric",
-                      day: "numeric",
-                    })}
-                  </time>
-                  <p>{item.sentence}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </aside>
+      <section className="portal-grid" aria-label="三個英文學習站">
+        {sites.map((site) => (
+          <Link key={site.href} href={site.href} className={`portal-card ${site.tone}`}>
+            <span>{site.label}</span>
+            <h2>{site.title}</h2>
+            <p>{site.description}</p>
+            <blockquote>{site.sample}</blockquote>
+            <strong>進入學習</strong>
+          </Link>
+        ))}
       </section>
     </main>
   );

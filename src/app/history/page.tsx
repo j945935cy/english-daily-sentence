@@ -11,10 +11,10 @@ export default async function HistoryPage() {
       <section className="page-heading">
         <div>
           <p className="eyebrow">Archive</p>
-          <h1>歷史句子</h1>
+          <h1>每日一句英文歷史句子</h1>
         </div>
-        <Link href="/" className="ghost-button">
-          回到首頁
+        <Link href="/daily" className="ghost-button">
+          回到每日一句英文
         </Link>
       </section>
 
@@ -33,7 +33,7 @@ export default async function HistoryPage() {
             <p className="translation">{item.translation}</p>
             <div className="mini-grid">
               <div>
-                <strong>文法</strong>
+                <strong>句型</strong>
                 <p>{item.grammarNote}</p>
               </div>
               <div>

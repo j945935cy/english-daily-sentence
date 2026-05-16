@@ -1,35 +1,35 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
-import { getRecentSentences, getTodaySentence, MOTIVATION_COURSE } from "@/lib/sentences";
+import { DEFAULT_COURSE, getRecentSentences, getTodaySentence } from "@/lib/sentences";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 
-export default async function MotivationPage() {
+export default async function DailyPage() {
   const [user, todaySentence, recentSentences] = await Promise.all([
     getCurrentUser(),
-    getTodaySentence(MOTIVATION_COURSE),
-    getRecentSentences(MOTIVATION_COURSE),
+    getTodaySentence(DEFAULT_COURSE),
+    getRecentSentences(DEFAULT_COURSE),
   ]);
 
   return (
-    <main className="shell motivation-shell">
+    <main className="shell">
       <section className="topbar" aria-label="主要頁面">
         <div>
-          <p className="eyebrow">Motivational English</p>
-          <h1>勵志英語</h1>
+          <p className="eyebrow">Daily English</p>
+          <h1>每日一句英文</h1>
         </div>
         <AuthPanel user={user} />
       </section>
 
       <nav className="main-nav" aria-label="主要頁面">
         <Link href="/">入口站</Link>
-        <Link href="/motivation">今日句子</Link>
-        <Link href="/motivation/history">歷史句子</Link>
-        <Link href="/daily">每日一句英文</Link>
+        <Link href="/daily">今日句子</Link>
+        <Link href="/history">歷史句子</Link>
         <Link href="/kids">小學生入門英語</Link>
+        <Link href="/motivation">勵志英語</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
@@ -48,11 +48,11 @@ export default async function MotivationPage() {
 
           <div className="explain-grid">
             <section>
-              <h2>句型重點</h2>
+              <h2>文法重點</h2>
               <p>{todaySentence.grammarNote}</p>
             </section>
             <section>
-              <h2>生活用法</h2>
+              <h2>自然用法</h2>
               <p>{todaySentence.usageNote}</p>
             </section>
             <section>
@@ -69,15 +69,15 @@ export default async function MotivationPage() {
         <aside className="side-panel">
           <div className="panel-block">
             <h2>手機推送</h2>
-            <p>登入後可訂閱每日勵志英文通知。每天一句短句，讓英文練習和自我鼓勵一起前進。</p>
-            <PushButton isSignedIn={Boolean(user)} courseId={MOTIVATION_COURSE} />
+            <p>登入後可訂閱每日一句英文通知。手機會收到今天的英文句子，方便固定練習。</p>
+            <PushButton isSignedIn={Boolean(user)} />
           </div>
 
           <div className="panel-block">
             <h2>最近句子</h2>
             <div className="history-list compact">
               {recentSentences.map((item) => (
-                <Link key={item.id} href="/motivation/history" className="history-item">
+                <Link key={item.id} href="/history" className="history-item">
                   <time>
                     {item.publishDate.toLocaleDateString("zh-TW", {
                       month: "numeric",

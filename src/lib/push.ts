@@ -1,6 +1,21 @@
 import webpush from "web-push";
 import { ensureDatabase, prisma } from "./prisma";
-import { DEFAULT_COURSE, type CourseSlug } from "./courses";
+import { DEFAULT_COURSE, KIDS_COURSE, MOTIVATION_COURSE, type CourseSlug } from "./courses";
+
+const pushMeta = {
+  [DEFAULT_COURSE]: {
+    title: "每日一句英文",
+    url: "/daily",
+  },
+  [KIDS_COURSE]: {
+    title: "小學生入門英語",
+    url: "/kids",
+  },
+  [MOTIVATION_COURSE]: {
+    title: "勵志英語",
+    url: "/motivation",
+  },
+} satisfies Record<CourseSlug, { title: string; url: string }>;
 
 export function configureWebPush() {
   const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
@@ -51,9 +66,9 @@ export async function sendDailySentencePush(courseId: CourseSlug = DEFAULT_COURS
             keys: { p256dh: item.p256dh, auth: item.auth },
           },
           JSON.stringify({
-            title: courseId === DEFAULT_COURSE ? "今日一句英文" : "今日小學生英語",
+            title: pushMeta[courseId].title,
             body: sentence.sentence,
-            url: courseId === DEFAULT_COURSE ? "/" : "/kids",
+            url: pushMeta[courseId].url,
           }),
         );
         sent += 1;

@@ -1,8 +1,8 @@
 self.addEventListener("push", (event) => {
   const data = event.data ? event.data.json() : {};
-  const title = data.title || "今日一句英文";
+  const title = data.title || "每日一句英文";
   const options = {
-    body: data.body || "新的每日英文句子已發布。",
+    body: data.body || "今天的英文句子已送達。",
     data: { url: data.url || "/" },
   };
 

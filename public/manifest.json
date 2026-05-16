@@ -1,7 +1,7 @@
 {
-  "name": "每日一句英文",
+  "name": "每日英文學習入口站",
   "short_name": "Daily English",
-  "description": "每日解釋一句英文並推送到手機",
+  "description": "每日一句英文、小學生入門英語、勵志英語的學習入口。",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f6f3ee",

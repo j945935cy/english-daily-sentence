@@ -25,9 +25,10 @@ export default async function KidsPage() {
       </section>
 
       <nav className="main-nav" aria-label="主要頁面">
+        <Link href="/">入口站</Link>
         <Link href="/kids">今日句子</Link>
         <Link href="/kids/history">歷史句子</Link>
-        <Link href="/">每日一句英文</Link>
+        <Link href="/daily">每日一句英文</Link>
         <Link href="/motivation">勵志英語</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
