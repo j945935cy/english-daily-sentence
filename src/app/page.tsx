@@ -36,6 +36,14 @@ const sites = [
     sample: "Present Simple: I study English every day.",
     tone: "grammar",
   },
+  {
+    href: "/phrase",
+    label: "Phrase English",
+    title: "每日一片語",
+    description: "每天一個常用英文片語，學意思、搭配詞、使用情境與自然例句。",
+    sample: "look up",
+    tone: "phrase",
+  },
 ];
 
 export default async function PortalPage() {
@@ -48,7 +56,7 @@ export default async function PortalPage() {
           <p className="eyebrow">English Daily Hub</p>
           <h1>每日英文學習入口站</h1>
           <p>
-            這裡整合四個每日英文版本。選一個適合今天狀態的入口，讀一句、聽一句、練一個重點，慢慢累積英文感覺。
+            這裡整合五個每日英文版本。選一個適合今天狀態的入口，讀一句、聽一句、練一個重點，慢慢累積英文感覺。
           </p>
         </div>
         <nav className="main-nav portal-nav" aria-label="主要頁面">
@@ -56,11 +64,12 @@ export default async function PortalPage() {
           <Link href="/kids">小學生入門英語</Link>
           <Link href="/motivation">勵志英語</Link>
           <Link href="/grammar">每日一文法</Link>
+          <Link href="/phrase">每日一片語</Link>
           {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
         </nav>
       </section>
 
-      <section className="portal-grid" aria-label="四個英文學習站">
+      <section className="portal-grid" aria-label="五個英文學習站">
         {sites.map((site) => (
           <Link key={site.href} href={site.href} className={`portal-card ${site.tone}`}>
             <span>{site.label}</span>

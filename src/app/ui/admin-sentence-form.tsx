@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { DEFAULT_COURSE, GRAMMAR_COURSE, KIDS_COURSE, MOTIVATION_COURSE } from "@/lib/courses";
+import { DEFAULT_COURSE, GRAMMAR_COURSE, KIDS_COURSE, MOTIVATION_COURSE, PHRASE_COURSE } from "@/lib/courses";
 
 type Props = {
   defaultDate?: string;
@@ -50,6 +50,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
           <option value={KIDS_COURSE}>小學生入門英語</option>
           <option value={MOTIVATION_COURSE}>勵志英語</option>
           <option value={GRAMMAR_COURSE}>每日一文法</option>
+          <option value={PHRASE_COURSE}>每日一片語</option>
         </select>
       </label>
       <label>
@@ -57,7 +58,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
         <input name="publishDate" type="date" defaultValue={defaultDate} required />
       </label>
       <label>
-        英文句子或文法標題
+        英文句子、片語或標題
         <input name="sentence" required />
       </label>
       <label>
@@ -65,7 +66,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
         <textarea name="translation" required />
       </label>
       <label>
-        文法重點
+        文法或片語重點
         <textarea name="grammarNote" required />
       </label>
       <label>

@@ -31,6 +31,7 @@ export default async function DailyPage() {
         <Link href="/kids">小學生入門英語</Link>
         <Link href="/motivation">勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
+        <Link href="/phrase">每日一片語</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 

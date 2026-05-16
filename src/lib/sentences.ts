@@ -5,10 +5,19 @@ import {
   GRAMMAR_COURSE,
   KIDS_COURSE,
   MOTIVATION_COURSE,
+  PHRASE_COURSE,
   type CourseSlug,
 } from "./courses";
 
-export { courses, DEFAULT_COURSE, GRAMMAR_COURSE, KIDS_COURSE, MOTIVATION_COURSE, normalizeCourseSlug } from "./courses";
+export {
+  courses,
+  DEFAULT_COURSE,
+  GRAMMAR_COURSE,
+  KIDS_COURSE,
+  MOTIVATION_COURSE,
+  PHRASE_COURSE,
+  normalizeCourseSlug,
+} from "./courses";
 export type { CourseSlug } from "./courses";
 
 type SentenceFallback = {
@@ -48,10 +57,18 @@ const fallbackByCourse = {
   [GRAMMAR_COURSE]: {
     sentence: "Present Simple: I study English every day.",
     translation: "一般現在式：我每天讀英文。",
-    grammarNote: "一般現在式用來描述習慣、事實與固定狀態。主詞是 he、she、it 時，動詞通常加 s 或 es。",
+    grammarNote: "一般現在式用來描述習慣、事實與固定狀態。",
     usageNote: "適合描述每天、常常、通常會做的事。",
     vocabulary: "present simple: 一般現在式；habit: 習慣；fact: 事實。",
     example: "She studies English every morning.",
+  },
+  [PHRASE_COURSE]: {
+    sentence: "look up",
+    translation: "查詢；抬頭看。",
+    grammarNote: "look up 是片語動詞，可接字典、資料或資訊，也可表示往上看。",
+    usageNote: "遇到不懂的單字時，可以說 look up the word。",
+    vocabulary: "look up: 查詢；word: 單字；dictionary: 字典。",
+    example: "I need to look up this word.",
   },
 } satisfies Record<CourseSlug, SentenceFallback>;
 

@@ -398,8 +398,19 @@ textarea {
   --soft: #f1f4fb;
 }
 
+.phrase-shell {
+  --accent: #6c6a17;
+  --accent-dark: #4f4d0f;
+  --warm: #8c4f2f;
+  --soft: #f7f6e8;
+}
+
 .grammar-title {
   font-size: clamp(1.8rem, 4.3vw, 4rem);
+}
+
+.phrase-title {
+  font-size: clamp(2.2rem, 5.5vw, 5.4rem);
 }
 
 .portal-shell {
@@ -436,7 +447,7 @@ textarea {
 
 .portal-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -473,6 +484,10 @@ textarea {
 
 .portal-card.grammar::before {
   background: #5a6784;
+}
+
+.portal-card.phrase::before {
+  background: #6c6a17;
 }
 
 .portal-card span {

@@ -1,69 +1,69 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
-import { getRecentSentences, getTodaySentence, MOTIVATION_COURSE } from "@/lib/sentences";
+import { getRecentSentences, getTodaySentence, PHRASE_COURSE } from "@/lib/sentences";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 
-export default async function MotivationPage() {
-  const [user, todaySentence, recentSentences] = await Promise.all([
+export default async function PhrasePage() {
+  const [user, todayPhrase, recentPhrases] = await Promise.all([
     getCurrentUser(),
-    getTodaySentence(MOTIVATION_COURSE),
-    getRecentSentences(MOTIVATION_COURSE),
+    getTodaySentence(PHRASE_COURSE),
+    getRecentSentences(PHRASE_COURSE),
   ]);
 
   return (
-    <main className="shell motivation-shell">
+    <main className="shell phrase-shell">
       <section className="topbar" aria-label="主要頁面">
         <div>
-          <p className="eyebrow">Motivational English</p>
-          <h1>勵志英語</h1>
+          <p className="eyebrow">Phrase English</p>
+          <h1>每日一片語</h1>
         </div>
         <AuthPanel user={user} />
       </section>
 
       <nav className="main-nav" aria-label="主要頁面">
         <Link href="/">入口站</Link>
-        <Link href="/motivation">今日句子</Link>
-        <Link href="/motivation/history">歷史句子</Link>
+        <Link href="/phrase">今日片語</Link>
+        <Link href="/phrase/history">歷史片語</Link>
         <Link href="/daily">每日一句英文</Link>
         <Link href="/kids">小學生入門英語</Link>
+        <Link href="/motivation">勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
-        <Link href="/phrase">每日一片語</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
       <section className="learning-layout">
         <article className="lesson">
           <div className="lesson-date">
-            {todaySentence.publishDate.toLocaleDateString("zh-TW", {
+            {todayPhrase.publishDate.toLocaleDateString("zh-TW", {
               month: "long",
               day: "numeric",
               weekday: "long",
             })}
           </div>
-          <p className="sentence">{todaySentence.sentence}</p>
-          <SpeakButton text={todaySentence.sentence} />
-          <p className="translation">{todaySentence.translation}</p>
+          <p className="sentence phrase-title">{todayPhrase.sentence}</p>
+          <SpeakButton text={todayPhrase.example} />
+          <p className="translation">{todayPhrase.translation}</p>
 
           <div className="explain-grid">
             <section>
-              <h2>句型重點</h2>
-              <p>{todaySentence.grammarNote}</p>
+              <h2>片語重點</h2>
+              <p>{todayPhrase.grammarNote}</p>
             </section>
             <section>
-              <h2>生活用法</h2>
-              <p>{todaySentence.usageNote}</p>
+              <h2>自然用法</h2>
+              <p>{todayPhrase.usageNote}</p>
             </section>
             <section>
-              <h2>單字片語</h2>
-              <p>{todaySentence.vocabulary}</p>
+              <h2>搭配單字</h2>
+              <p>{todayPhrase.vocabulary}</p>
             </section>
             <section>
-              <h2>延伸例句</h2>
-              <p>{todaySentence.example}</p>
+              <h2>例句朗讀</h2>
+              <p>{todayPhrase.example}</p>
             </section>
           </div>
         </article>
@@ -71,15 +71,15 @@ export default async function MotivationPage() {
         <aside className="side-panel">
           <div className="panel-block">
             <h2>手機推送</h2>
-            <p>登入後可訂閱每日勵志英文通知。每天一句短句，讓英文練習和自我鼓勵一起前進。</p>
-            <PushButton isSignedIn={Boolean(user)} courseId={MOTIVATION_COURSE} />
+            <p>登入後可訂閱每日一片語通知。每天學一個常見搭配，讓英文更自然。</p>
+            <PushButton isSignedIn={Boolean(user)} courseId={PHRASE_COURSE} />
           </div>
 
           <div className="panel-block">
-            <h2>最近句子</h2>
+            <h2>最近片語</h2>
             <div className="history-list compact">
-              {recentSentences.map((item) => (
-                <Link key={item.id} href="/motivation/history" className="history-item">
+              {recentPhrases.map((item) => (
+                <Link key={item.id} href="/phrase/history" className="history-item">
                   <time>
                     {item.publishDate.toLocaleDateString("zh-TW", {
                       month: "numeric",
