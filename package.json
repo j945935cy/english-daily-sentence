@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "postinstall": "prisma generate",
-    "db:push": "prisma db push",
+    "db:push": "prisma db push --accept-data-loss",
     "seed:365": "node scripts/seed-365-sentences.mjs",
     "seed:kids-365": "node scripts/seed-kids-365-sentences.mjs",
     "start": "next start",
