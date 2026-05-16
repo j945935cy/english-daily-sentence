@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { getRecentSentences, getTodaySentence, KIDS_COURSE } from "@/lib/sentences";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
+import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 
@@ -41,6 +42,7 @@ export default async function KidsPage() {
             })}
           </div>
           <p className="sentence">{todaySentence.sentence}</p>
+          <SpeakButton text={todaySentence.sentence} />
           <p className="translation">{todaySentence.translation}</p>
 
           <div className="explain-grid">
