@@ -1,0 +1,10 @@
+{
+  "name": "每日一句英文",
+  "short_name": "Daily English",
+  "description": "每日解釋一句英文並推送到手機",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ee",
+  "theme_color": "#0f7b72",
+  "icons": []
+}
