@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
-import { prisma } from "./prisma";
+import { ensureDatabase, prisma } from "./prisma";
 
 const SESSION_COOKIE = "daily_english_session";
 const secret = new TextEncoder().encode(
@@ -37,6 +37,8 @@ export async function clearSession() {
 }
 
 export async function getCurrentUser(): Promise<SessionUser | null> {
+  await ensureDatabase();
+
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
 

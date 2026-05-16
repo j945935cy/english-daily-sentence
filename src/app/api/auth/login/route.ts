@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/prisma";
+import { ensureDatabase, prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/auth";
 
 export async function POST(request: Request) {
+  await ensureDatabase();
+
   const body = await request.json();
   const email = String(body.email ?? "").trim().toLowerCase();
   const password = String(body.password ?? "");

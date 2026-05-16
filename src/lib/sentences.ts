@@ -1,6 +1,8 @@
-import { prisma } from "./prisma";
+import { ensureDatabase, prisma } from "./prisma";
 
 export async function getTodaySentence() {
+  await ensureDatabase();
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -30,6 +32,8 @@ export async function getTodaySentence() {
 }
 
 export async function getRecentSentences(limit = 7) {
+  await ensureDatabase();
+
   return prisma.dailySentence.findMany({
     orderBy: { publishDate: "desc" },
     take: limit,
@@ -37,6 +41,8 @@ export async function getRecentSentences(limit = 7) {
 }
 
 export async function getAllSentences() {
+  await ensureDatabase();
+
   return prisma.dailySentence.findMany({
     orderBy: { publishDate: "desc" },
   });

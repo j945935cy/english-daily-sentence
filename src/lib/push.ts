@@ -1,5 +1,5 @@
 import webpush from "web-push";
-import { prisma } from "./prisma";
+import { ensureDatabase, prisma } from "./prisma";
 
 export function configureWebPush() {
   const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
@@ -15,6 +15,8 @@ export function configureWebPush() {
 }
 
 export async function sendDailySentencePush() {
+  await ensureDatabase();
+
   if (!configureWebPush()) {
     return { sent: 0, failed: 0, skipped: true };
   }

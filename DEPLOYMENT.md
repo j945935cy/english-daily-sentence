@@ -33,3 +33,6 @@ npx web-push generate-vapid-keys --json
 
 SQLite is fine for local development. For a real hosted deployment, use a persistent production database and set
 `DATABASE_URL` in the hosting platform before opening registration to users.
+
+For a temporary Vercel smoke test, `DATABASE_URL="file:/tmp/dev.db"` works because the app creates SQLite tables at
+runtime. Data stored this way is not durable across serverless cold starts, so do not use it for a public launch.
