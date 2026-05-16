@@ -4,6 +4,8 @@ import { getRecentSentences, getTodaySentence } from "@/lib/sentences";
 import { AuthPanel } from "./ui/auth-panel";
 import { PushButton } from "./ui/push-button";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [user, todaySentence, recentSentences] = await Promise.all([
     getCurrentUser(),

@@ -1,14 +1,29 @@
 import { PrismaClient } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
 };
 
+function createPrismaClient() {
+  const log: Prisma.LogLevel[] =
+    process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"];
+  const connectionString = process.env.DATABASE_URL;
+
+  if (connectionString?.startsWith("postgres")) {
+    return new PrismaClient({
+      adapter: new PrismaPg({ connectionString }),
+      log,
+    });
+  }
+
+  return new PrismaClient({ log });
+}
+
 export const prisma =
   globalForPrisma.prisma ??
-  new PrismaClient({
-    log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
-  });
+  createPrismaClient();
 
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = prisma;
@@ -17,15 +32,11 @@ if (process.env.NODE_ENV !== "production") {
 let setupPromise: Promise<void> | null = null;
 
 export async function ensureDatabase() {
-  if (!process.env.DATABASE_URL?.startsWith("file:")) {
-    return;
-  }
-
-  setupPromise ??= setupSqliteDatabase();
+  setupPromise ??= setupDatabase();
   await setupPromise;
 }
 
-async function setupSqliteDatabase() {
+async function setupDatabase() {
   await prisma.$executeRawUnsafe(`
     CREATE TABLE IF NOT EXISTS "User" (
       "id" TEXT NOT NULL PRIMARY KEY,
@@ -33,8 +44,8 @@ async function setupSqliteDatabase() {
       "name" TEXT,
       "passwordHash" TEXT NOT NULL,
       "isAdmin" BOOLEAN NOT NULL DEFAULT false,
-      "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
   `);
   await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX IF NOT EXISTS "User_email_key" ON "User"("email");`);
@@ -48,9 +59,9 @@ async function setupSqliteDatabase() {
       "usageNote" TEXT NOT NULL,
       "vocabulary" TEXT NOT NULL,
       "example" TEXT NOT NULL,
-      "publishDate" DATETIME NOT NULL,
-      "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      "publishDate" TIMESTAMP(3) NOT NULL,
+      "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
   `);
   await prisma.$executeRawUnsafe(
@@ -64,8 +75,8 @@ async function setupSqliteDatabase() {
       "endpoint" TEXT NOT NULL,
       "p256dh" TEXT NOT NULL,
       "auth" TEXT NOT NULL,
-      "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
       CONSTRAINT "PushSubscription_userId_fkey"
         FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
     );
@@ -79,7 +90,7 @@ async function setupSqliteDatabase() {
       "id" TEXT NOT NULL PRIMARY KEY,
       "userId" TEXT NOT NULL,
       "sentenceId" TEXT NOT NULL,
-      "viewedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "viewedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
       CONSTRAINT "LearningHistory_userId_fkey"
         FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT "LearningHistory_sentenceId_fkey"

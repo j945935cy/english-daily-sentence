@@ -5,6 +5,8 @@ import { getAllSentences } from "@/lib/sentences";
 import { AdminSentenceForm } from "../ui/admin-sentence-form";
 import { PushTestPanel } from "../ui/push-test-panel";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPage() {
   const user = await getCurrentUser();
 
