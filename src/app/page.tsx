@@ -27,6 +27,7 @@ export default async function Home() {
         <Link href="/">今日句子</Link>
         <Link href="/history">歷史句子</Link>
         <Link href="/kids">小學生入門英語</Link>
+        <Link href="/motivation">勵志英語</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 

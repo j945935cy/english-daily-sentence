@@ -1,33 +1,33 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
-import { getRecentSentences, getTodaySentence, KIDS_COURSE } from "@/lib/sentences";
+import { getRecentSentences, getTodaySentence, MOTIVATION_COURSE } from "@/lib/sentences";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 
 export const dynamic = "force-dynamic";
 
-export default async function KidsPage() {
+export default async function MotivationPage() {
   const [user, todaySentence, recentSentences] = await Promise.all([
     getCurrentUser(),
-    getTodaySentence(KIDS_COURSE),
-    getRecentSentences(KIDS_COURSE),
+    getTodaySentence(MOTIVATION_COURSE),
+    getRecentSentences(MOTIVATION_COURSE),
   ]);
 
   return (
-    <main className="shell kids-shell">
-      <section className="topbar" aria-label="網站導覽">
+    <main className="shell motivation-shell">
+      <section className="topbar" aria-label="主要頁面">
         <div>
-          <p className="eyebrow">Kids English</p>
-          <h1>小學生入門英語</h1>
+          <p className="eyebrow">Motivational English</p>
+          <h1>勵志英語</h1>
         </div>
         <AuthPanel user={user} />
       </section>
 
       <nav className="main-nav" aria-label="主要頁面">
-        <Link href="/kids">今日句子</Link>
-        <Link href="/kids/history">歷史句子</Link>
+        <Link href="/motivation">今日句子</Link>
+        <Link href="/motivation/history">歷史句子</Link>
         <Link href="/">每日一句英文</Link>
-        <Link href="/motivation">勵志英語</Link>
+        <Link href="/kids">小學生入門英語</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
@@ -53,11 +53,11 @@ export default async function KidsPage() {
               <p>{todaySentence.usageNote}</p>
             </section>
             <section>
-              <h2>單字</h2>
+              <h2>單字片語</h2>
               <p>{todaySentence.vocabulary}</p>
             </section>
             <section>
-              <h2>再練一句</h2>
+              <h2>延伸例句</h2>
               <p>{todaySentence.example}</p>
             </section>
           </div>
@@ -66,15 +66,15 @@ export default async function KidsPage() {
         <aside className="side-panel">
           <div className="panel-block">
             <h2>手機推送</h2>
-            <p>登入後可訂閱每日英文通知。小學生版內容短、簡單，適合每天固定練習。</p>
-            <PushButton isSignedIn={Boolean(user)} courseId={KIDS_COURSE} />
+            <p>登入後可訂閱每日勵志英文通知。每天一句短句，讓英文練習和自我鼓勵一起前進。</p>
+            <PushButton isSignedIn={Boolean(user)} courseId={MOTIVATION_COURSE} />
           </div>
 
           <div className="panel-block">
             <h2>最近句子</h2>
             <div className="history-list compact">
               {recentSentences.map((item) => (
-                <Link key={item.id} href="/kids/history" className="history-item">
+                <Link key={item.id} href="/motivation/history" className="history-item">
                   <time>
                     {item.publishDate.toLocaleDateString("zh-TW", {
                       month: "numeric",
