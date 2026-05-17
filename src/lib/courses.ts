@@ -3,6 +3,7 @@ export const KIDS_COURSE = "kids-english";
 export const MOTIVATION_COURSE = "motivational-english";
 export const GRAMMAR_COURSE = "grammar-english";
 export const PHRASE_COURSE = "phrase-english";
+export const PATTERN_COURSE = "pattern-english";
 
 export const courses = {
   [DEFAULT_COURSE]: {
@@ -14,7 +15,7 @@ export const courses = {
   [KIDS_COURSE]: {
     id: KIDS_COURSE,
     slug: KIDS_COURSE,
-    name: "小學生入門英語",
+    name: "小學生每日一句英語",
     description: "適合小學生的日常與課堂英語，每天用短句建立英文信心。",
   },
   [MOTIVATION_COURSE]: {
@@ -34,6 +35,12 @@ export const courses = {
     slug: PHRASE_COURSE,
     name: "每日一片語",
     description: "每天一個常用英文片語，學意思、用法、搭配詞與自然例句。",
+  },
+  [PATTERN_COURSE]: {
+    id: PATTERN_COURSE,
+    slug: PATTERN_COURSE,
+    name: "每日一句型",
+    description: "每天拆解一個實用英文句型，練會替換主詞、動詞和情境。",
   },
 } as const;
 

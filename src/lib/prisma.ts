@@ -52,7 +52,7 @@ async function setupDatabase() {
     INSERT INTO "Course" ("id", "slug", "name", "description", "updatedAt")
     VALUES
       ('daily-english', 'daily-english', '每日一句英文', '每天一句實用英文，累積自然語感。', CURRENT_TIMESTAMP),
-      ('kids-english', 'kids-english', '小學生入門英語', '短句、基礎單字和生活化例句，適合小學生每天學一點。', CURRENT_TIMESTAMP)
+      ('kids-english', 'kids-english', '小學生每日一句英語', '短句、基礎單字和生活化例句，適合小學生每天學一點。', CURRENT_TIMESTAMP)
     ON CONFLICT ("id") DO UPDATE SET
       "slug" = EXCLUDED."slug",
       "name" = EXCLUDED."name",

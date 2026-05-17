@@ -28,10 +28,11 @@ export default async function DailyPage() {
         <Link href="/">入口站</Link>
         <Link href="/daily">今日句子</Link>
         <Link href="/history">歷史句子</Link>
-        <Link href="/kids">小學生入門英語</Link>
+        <Link href="/kids">小學生每日一句英語</Link>
         <Link href="/motivation">勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
+        <Link href="/pattern">每日一句型</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 

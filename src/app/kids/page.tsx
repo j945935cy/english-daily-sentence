@@ -19,7 +19,7 @@ export default async function KidsPage() {
       <section className="topbar" aria-label="主要頁面">
         <div>
           <p className="eyebrow">Kids English</p>
-          <h1>小學生入門英語</h1>
+          <h1>小學生每日一句英語</h1>
         </div>
         <AuthPanel user={user} />
       </section>
@@ -32,6 +32,7 @@ export default async function KidsPage() {
         <Link href="/motivation">勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
+        <Link href="/pattern">每日一句型</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
