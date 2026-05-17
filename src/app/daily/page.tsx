@@ -8,8 +8,8 @@ import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
-  "每日一句英文",
-  "每天一句實用英文，搭配中文解釋、文法重點、單字片語、朗讀與手機推播。",
+  "每日一句英語",
+  "每天一句實用英語，搭配中文解釋、文法重點、單字片語、朗讀與手機推播。",
 );
 
 export default async function DailyPage() {
@@ -24,7 +24,7 @@ export default async function DailyPage() {
       <section className="topbar" aria-label="主要頁面">
         <div>
           <p className="eyebrow">Daily English</p>
-          <h1>每日一句英文</h1>
+          <h1>每日一句英語</h1>
         </div>
         <AuthPanel user={user} />
       </section>
@@ -39,8 +39,8 @@ export default async function DailyPage() {
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
         <Link href="/ai">每日一AI知識英文學習</Link>
-        <Link href="/travel">每日一旅遊英文學習</Link>
-        <Link href="/life">每日一生活英文學習</Link>
+        <Link href="/travel">每日一旅遊英語學習</Link>
+        <Link href="/life">每日一生活英語學習</Link>
         <Link href="/business">每日一商管英文學習</Link>
         <Link href="/chat">每日一閒聊英語學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
@@ -82,7 +82,7 @@ export default async function DailyPage() {
         <aside className="side-panel">
           <div className="panel-block">
             <h2>手機推送</h2>
-            <p>登入後可訂閱每日一句英文通知。手機會收到今天的英文句子，方便固定練習。</p>
+            <p>登入後可訂閱每日一句英語通知。手機會收到今天的英語句子，方便固定練習。</p>
             <PushButton isSignedIn={Boolean(user)} />
           </div>
 

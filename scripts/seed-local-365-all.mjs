@@ -15,8 +15,8 @@ const courses = [
   {
     id: "daily-english",
     slug: "daily-english",
-    name: "每日一句英文",
-    description: "每天一句實用英文，搭配文法、用法、單字與延伸例句。",
+    name: "每日一句英語",
+    description: "每天一句實用英語，搭配文法、用法、單字與延伸例句。",
   },
   {
     id: "kids-english",
@@ -57,14 +57,14 @@ const courses = [
   {
     id: "travel-english",
     slug: "travel-english",
-    name: "每日一旅遊英文學習",
-    description: "每天學一個旅遊情境英文句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
+    name: "每日一旅遊英語學習",
+    description: "每天學一個旅遊情境英語句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
   },
   {
     id: "life-english",
     slug: "life-english",
-    name: "每日一生活英文學習",
-    description: "每天學一個日常生活英文句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
+    name: "每日一生活英語學習",
+    description: "每天學一個日常生活英語句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
   },
   {
     id: "business-english",
@@ -344,7 +344,7 @@ const travelFrames = [
 ];
 
 const lifeTopics = [
-  ["I need to pick up some groceries after work.", "我下班後需要去買一些日用品和食材。", "need to + 動詞原形 表示需要做某事，pick up 在生活英文中常表示順路買或拿。", "pick up: 順路買/拿; groceries: 日用品與食材; after work: 下班後", "I need to pick up my package after work."],
+  ["I need to pick up some groceries after work.", "我下班後需要去買一些日用品和食材。", "need to + 動詞原形 表示需要做某事，pick up 在生活英語中常表示順路買或拿。", "pick up: 順路買/拿; groceries: 日用品與食材; after work: 下班後", "I need to pick up my package after work."],
   ["Could you turn down the volume?", "可以把音量調小一點嗎？", "Could you + 動詞原形 是禮貌請求句，turn down 可表示調低音量或溫度。", "turn down: 調低; volume: 音量; noisy: 吵的", "Could you turn down the air conditioner?"],
   ["I am running late this morning.", "我今天早上快遲到了。", "be running late 表示行程延誤或快遲到。", "run late: 快遲到; this morning: 今天早上; hurry: 趕快", "I am running late for the meeting."],
   ["Can you remind me to pay the bill?", "你可以提醒我繳帳單嗎？", "remind me to + 動詞原形 表示提醒我做某事。", "remind: 提醒; pay the bill: 繳帳單; due date: 到期日", "Can you remind me to call Mom tonight?"],
@@ -368,7 +368,7 @@ const lifeTopics = [
 
 const lifeFrames = [
   "這句適合日常生活情境，先練核心動詞，再替換人、時間或物品。",
-  "生活英文常用簡短自然的說法，像 need to、have to、Can you...? 都很實用。",
+  "生活英語常用簡短自然的說法，像 need to、have to、Can you...? 都很實用。",
   "如果想更客氣，可以把 Can you...? 換成 Could you...?。",
   "把句子放進自己的生活行程裡練習，臨時要說時會更容易想起來。",
   "這類句子適合用在家裡、公司、商店、餐廳或朋友聊天時。",

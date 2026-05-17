@@ -17,7 +17,7 @@ import {
 
 const pushMeta = {
   [DEFAULT_COURSE]: {
-    title: "每日一句英文",
+    title: "每日一句英語",
     url: "/daily",
   },
   [KIDS_COURSE]: {
@@ -45,11 +45,11 @@ const pushMeta = {
     url: "/ai",
   },
   [TRAVEL_COURSE]: {
-    title: "每日一旅遊英文學習",
+    title: "每日一旅遊英語學習",
     url: "/travel",
   },
   [LIFE_COURSE]: {
-    title: "每日一生活英文學習",
+    title: "每日一生活英語學習",
     url: "/life",
   },
   [BUSINESS_COURSE]: {

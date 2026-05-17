@@ -58,15 +58,15 @@ export function AdminSentenceForm({ defaultDate }: Props) {
       <label>
         課程
         <select name="courseId" defaultValue={DEFAULT_COURSE}>
-          <option value={DEFAULT_COURSE}>每日一句英文</option>
+          <option value={DEFAULT_COURSE}>每日一句英語</option>
           <option value={KIDS_COURSE}>小學生每日一句英語</option>
           <option value={MOTIVATION_COURSE}>每日一勵志英語</option>
           <option value={GRAMMAR_COURSE}>每日一文法</option>
           <option value={PHRASE_COURSE}>每日一片語</option>
           <option value={PATTERN_COURSE}>每日一句型</option>
           <option value={AI_COURSE}>每日一AI知識英文學習</option>
-          <option value={TRAVEL_COURSE}>每日一旅遊英文學習</option>
-          <option value={LIFE_COURSE}>每日一生活英文學習</option>
+          <option value={TRAVEL_COURSE}>每日一旅遊英語學習</option>
+          <option value={LIFE_COURSE}>每日一生活英語學習</option>
           <option value={BUSINESS_COURSE}>每日一商管英文學習</option>
           <option value={CHAT_COURSE}>每日一閒聊英語學習</option>
         </select>

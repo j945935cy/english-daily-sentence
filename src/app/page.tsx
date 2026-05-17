@@ -5,14 +5,14 @@ import { pageMetadata } from "@/lib/metadata";
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
   "首頁",
-  "十一個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型、每日一AI知識英文學習、每日一旅遊英文學習、每日一生活英文學習、每日一商管英文學習與每日一閒聊英語學習。",
+  "十一個每日英文版本入口：每日一句英語、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型、每日一AI知識英文學習、每日一旅遊英語學習、每日一生活英語學習、每日一商管英文學習與每日一閒聊英語學習。",
 );
 
 const sites = [
   {
     href: "/daily",
     label: "Daily English",
-    title: "每日一句英文",
+    title: "每日一句英語",
     description: "適合一般學習者，每天一個實用英文句子，搭配文法、用法、單字與朗讀。",
     sample: "I can review new words a little better every day.",
     tone: "daily",
@@ -68,7 +68,7 @@ const sites = [
   {
     href: "/travel",
     label: "Travel English",
-    title: "每日一旅遊英文學習",
+    title: "每日一旅遊英語學習",
     description: "每天一個旅行會用到的英文句子，從機場、飯店、交通到點餐問路，讓出國溝通更順。",
     sample: "Could you tell me where the train station is?",
     tone: "travel",
@@ -76,8 +76,8 @@ const sites = [
   {
     href: "/life",
     label: "Life English",
-    title: "每日一生活英文學習",
-    description: "每天一個日常生活英文句子，練習居家、購物、工作、社交與健康等實用溝通。",
+    title: "每日一生活英語學習",
+    description: "每天一個日常生活英語句子，練習居家、購物、工作、社交與健康等實用溝通。",
     sample: "I need to pick up some groceries after work.",
     tone: "life",
   },
@@ -113,15 +113,15 @@ export default async function PortalPage() {
           </p>
         </div>
         <nav className="main-nav portal-nav" aria-label="主要頁面">
-          <Link href="/daily">每日一句英文</Link>
+          <Link href="/daily">每日一句英語</Link>
           <Link href="/kids">小學生每日一句英語</Link>
           <Link href="/motivation">每日一勵志英語</Link>
           <Link href="/grammar">每日一文法</Link>
           <Link href="/phrase">每日一片語</Link>
           <Link href="/pattern">每日一句型</Link>
           <Link href="/ai">每日一AI知識英文學習</Link>
-          <Link href="/travel">每日一旅遊英文學習</Link>
-          <Link href="/life">每日一生活英文學習</Link>
+          <Link href="/travel">每日一旅遊英語學習</Link>
+          <Link href="/life">每日一生活英語學習</Link>
           <Link href="/business">每日一商管英文學習</Link>
           <Link href="/chat">每日一閒聊英語學習</Link>
           {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}

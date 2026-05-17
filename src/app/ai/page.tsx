@@ -33,14 +33,14 @@ export default async function AIPage() {
         <Link href="/">回首頁</Link>
         <Link href="/ai">今日AI知識</Link>
         <Link href="/ai/history">歷史AI知識</Link>
-        <Link href="/daily">每日一句英文</Link>
+        <Link href="/daily">每日一句英語</Link>
         <Link href="/kids">小學生每日一句英語</Link>
         <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
-        <Link href="/travel">每日一旅遊英文學習</Link>
-        <Link href="/life">每日一生活英文學習</Link>
+        <Link href="/travel">每日一旅遊英語學習</Link>
+        <Link href="/life">每日一生活英語學習</Link>
         <Link href="/business">每日一商管英文學習</Link>
         <Link href="/chat">每日一閒聊英語學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}

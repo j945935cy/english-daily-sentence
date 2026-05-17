@@ -109,7 +109,7 @@ const fallbackByCourse = {
   [LIFE_COURSE]: {
     sentence: "I need to pick up some groceries after work.",
     translation: "我下班後需要去買一些日用品和食材。",
-    grammarNote: "need to + 動詞原形 表示需要做某事，pick up 在生活英文中常表示順路買或拿。",
+    grammarNote: "need to + 動詞原形 表示需要做某事，pick up 在生活英語中常表示順路買或拿。",
     usageNote: "適合描述下班後買東西、拿包裹、接人或處理生活雜事。",
     vocabulary: "pick up: 順路買/拿; groceries: 日用品與食材; after work: 下班後",
     example: "I need to pick up my package after work.",

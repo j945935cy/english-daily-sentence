@@ -4,8 +4,8 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
-  "每日一句英文歷史句子",
-  "瀏覽每日一句英文的歷史句子、中文解釋、文法重點與延伸例句。",
+  "每日一句英語歷史句子",
+  "瀏覽每日一句英語的歷史句子、中文解釋、文法重點與延伸例句。",
 );
 
 export default async function HistoryPage() {
@@ -16,10 +16,10 @@ export default async function HistoryPage() {
       <section className="page-heading">
         <div>
           <p className="eyebrow">Archive</p>
-          <h1>每日一句英文歷史句子</h1>
+          <h1>每日一句英語歷史句子</h1>
         </div>
         <Link href="/daily" className="ghost-button">
-          回到每日一句英文
+          回到每日一句英語
         </Link>
       </section>
 

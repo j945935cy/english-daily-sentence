@@ -8,8 +8,8 @@ import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
-  "每日一生活英文學習",
-  "每天學一個日常生活英文句子，練習居家、購物、工作、社交、健康與生活溝通常用英文。",
+  "每日一生活英語學習",
+  "每天學一個日常生活英語句子，練習居家、購物、工作、社交、健康與生活溝通常用英語。",
 );
 
 export default async function LifePage() {
@@ -24,23 +24,23 @@ export default async function LifePage() {
       <section className="topbar" aria-label="頁首">
         <div>
           <p className="eyebrow">Life English</p>
-          <h1>每日一生活英文學習</h1>
+          <h1>每日一生活英語學習</h1>
         </div>
         <AuthPanel user={user} />
       </section>
 
       <nav className="main-nav" aria-label="主選單">
         <Link href="/">首頁</Link>
-        <Link href="/life">今日生活英文</Link>
-        <Link href="/life/history">生活英文歷史</Link>
-        <Link href="/daily">每日一句英文</Link>
+        <Link href="/life">今日生活英語</Link>
+        <Link href="/life/history">生活英語歷史</Link>
+        <Link href="/daily">每日一句英語</Link>
         <Link href="/kids">小學生每日一句英語</Link>
         <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
         <Link href="/ai">每日一AI知識英文學習</Link>
-        <Link href="/travel">每日一旅遊英文學習</Link>
+        <Link href="/travel">每日一旅遊英語學習</Link>
         <Link href="/business">每日一商管英文學習</Link>
         <Link href="/chat">每日一閒聊英語學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
@@ -81,13 +81,13 @@ export default async function LifePage() {
 
         <aside className="side-panel">
           <div className="panel-block">
-            <h2>訂閱生活英文</h2>
-            <p>登入後可以訂閱每日生活英文推播，每天練一個日常會用到的英文句子。</p>
+            <h2>訂閱生活英語</h2>
+            <p>登入後可以訂閱每日生活英語推播，每天練一個日常會用到的英語句子。</p>
             <PushButton isSignedIn={Boolean(user)} courseId={LIFE_COURSE} />
           </div>
 
           <div className="panel-block">
-            <h2>最近生活英文</h2>
+            <h2>最近生活英語</h2>
             <div className="history-list compact">
               {recentLessons.map((item) => (
                 <Link key={item.id} href="/life/history" className="history-item">

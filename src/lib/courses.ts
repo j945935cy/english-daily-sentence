@@ -14,8 +14,8 @@ export const courses = {
   [DEFAULT_COURSE]: {
     id: DEFAULT_COURSE,
     slug: DEFAULT_COURSE,
-    name: "每日一句英文",
-    description: "每天一句實用英文，搭配文法、用法、單字與延伸例句。",
+    name: "每日一句英語",
+    description: "每天一句實用英語，搭配文法、用法、單字與延伸例句。",
   },
   [KIDS_COURSE]: {
     id: KIDS_COURSE,
@@ -56,14 +56,14 @@ export const courses = {
   [TRAVEL_COURSE]: {
     id: TRAVEL_COURSE,
     slug: TRAVEL_COURSE,
-    name: "每日一旅遊英文學習",
-    description: "每天學一個旅遊情境英文句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
+    name: "每日一旅遊英語學習",
+    description: "每天學一個旅遊情境英語句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
   },
   [LIFE_COURSE]: {
     id: LIFE_COURSE,
     slug: LIFE_COURSE,
-    name: "每日一生活英文學習",
-    description: "每天學一個日常生活英文句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
+    name: "每日一生活英語學習",
+    description: "每天學一個日常生活英語句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
   },
   [BUSINESS_COURSE]: {
     id: BUSINESS_COURSE,
