@@ -10,6 +10,7 @@ import {
   PHRASE_COURSE,
   TRAVEL_COURSE,
   LIFE_COURSE,
+  BUSINESS_COURSE,
   type CourseSlug,
 } from "./courses";
 
@@ -24,6 +25,7 @@ export {
   PHRASE_COURSE,
   TRAVEL_COURSE,
   LIFE_COURSE,
+  BUSINESS_COURSE,
   normalizeCourseSlug,
 } from "./courses";
 export type { CourseSlug } from "./courses";
@@ -109,6 +111,14 @@ const fallbackByCourse = {
     usageNote: "適合描述下班後買東西、拿包裹、接人或處理生活雜事。",
     vocabulary: "pick up: 順路買/拿; groceries: 日用品與食材; after work: 下班後",
     example: "I need to pick up my package after work.",
+  },
+  [BUSINESS_COURSE]: {
+    sentence: "We need to align our strategy with customer needs.",
+    translation: "我們需要讓策略與客戶需求保持一致。",
+    grammarNote: "align A with B 表示讓 A 與 B 對齊或一致，是商管會議中常用句型。",
+    usageNote: "適合討論策略、產品方向、跨部門合作與客戶需求時使用。",
+    vocabulary: "align: 對齊; strategy: 策略; customer needs: 客戶需求",
+    example: "We need to align our budget with our priorities.",
   },
 } satisfies Record<CourseSlug, SentenceFallback>;
 

@@ -66,6 +66,12 @@ const courses = [
     name: "每日一生活英文學習",
     description: "每天學一個日常生活英文句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
   },
+  {
+    id: "business-english",
+    slug: "business-english",
+    name: "每日一商管英文學習",
+    description: "每天學一個商業管理英文句子，涵蓋會議、簡報、策略、財務、行銷、營運與領導等實用場景。",
+  },
 ];
 
 const dailyTopics = [
@@ -362,6 +368,37 @@ const lifeFrames = [
   "這類句子適合用在家裡、公司、商店、餐廳或朋友聊天時。",
 ];
 
+const businessTopics = [
+  ["We need to align our strategy with customer needs.", "我們需要讓策略與客戶需求保持一致。", "align A with B 表示讓 A 與 B 對齊或一致，是商管會議中常用句型。", "align: 對齊; strategy: 策略; customer needs: 客戶需求", "We need to align our budget with our priorities."],
+  ["The team should focus on measurable outcomes.", "團隊應該專注在可衡量的成果。", "focus on + 名詞/V-ing 表示專注於某事，measurable outcomes 指可衡量成果。", "measurable: 可衡量的; outcome: 成果; focus on: 專注於", "The project should focus on measurable impact."],
+  ["Our revenue grew by twelve percent this quarter.", "本季我們的營收成長了百分之十二。", "grow by + 百分比 表示增加了某個幅度，常用於財務報告。", "revenue: 營收; quarter: 季度; grow by: 成長了", "Our user base grew by ten percent this month."],
+  ["Let's review the key risks before we decide.", "我們決定前先檢視主要風險。", "Let's + 動詞原形 用來提出會議建議，before we decide 說明決策前動作。", "review: 檢視; key risks: 主要風險; decide: 決定", "Let's review the data before we launch."],
+  ["This proposal can improve operational efficiency.", "這項提案可以提升營運效率。", "can improve + 名詞 表示能提升某項指標或能力。", "proposal: 提案; operational efficiency: 營運效率; improve: 改善", "This tool can improve team productivity."],
+  ["We should prioritize the highest-impact tasks.", "我們應該優先處理影響最大的任務。", "prioritize + 名詞 表示優先排序或優先處理。", "prioritize: 優先處理; high-impact: 高影響力的; task: 任務", "We should prioritize customer-facing issues."],
+  ["The market trend is shifting quickly.", "市場趨勢正在快速轉變。", "be shifting 表示正在轉變，適合描述市場、需求或策略方向。", "market trend: 市場趨勢; shift: 轉變; quickly: 快速地", "Customer expectations are shifting quickly."],
+  ["We need a clear timeline for implementation.", "我們需要一個清楚的執行時程。", "need a clear + 名詞 表示需要明確的計畫、目標或流程。", "timeline: 時程; implementation: 執行; clear: 清楚的", "We need a clear timeline for the product launch."],
+  ["The campaign increased brand awareness.", "這個行銷活動提升了品牌知名度。", "increase + 名詞 表示提升某項商業指標。", "campaign: 行銷活動; brand awareness: 品牌知名度; increase: 提升", "The campaign increased customer engagement."],
+  ["Let's define the success metrics first.", "我們先定義成功指標。", "define + 名詞 表示定義範圍、目標或衡量指標。", "define: 定義; success metrics: 成功指標; first: 先", "Let's define the project scope first."],
+  ["The budget needs to support our growth plan.", "預算需要支持我們的成長計畫。", "support + 名詞 表示支援某個目標、策略或計畫。", "budget: 預算; growth plan: 成長計畫; support: 支持", "The roadmap needs to support our business goals."],
+  ["We need to improve cross-functional communication.", "我們需要改善跨部門溝通。", "cross-functional 表示跨職能或跨部門，常用於組織管理。", "cross-functional: 跨部門的; communication: 溝通; improve: 改善", "We need to improve cross-functional collaboration."],
+  ["Customer feedback should guide product decisions.", "客戶回饋應該引導產品決策。", "should guide + 名詞 表示應該引導某項決策或方向。", "customer feedback: 客戶回饋; guide: 引導; product decisions: 產品決策", "User research should guide design decisions."],
+  ["The leadership team approved the new initiative.", "領導團隊核准了新的計畫。", "approve + 名詞 表示核准方案、預算或計畫。", "leadership team: 領導團隊; approve: 核准; initiative: 計畫", "The board approved the annual budget."],
+  ["We need to reduce unnecessary costs.", "我們需要減少不必要的成本。", "reduce + 名詞 表示降低成本、風險或浪費。", "reduce: 減少; unnecessary: 不必要的; cost: 成本", "We need to reduce operational waste."],
+  ["The report highlights three major opportunities.", "這份報告強調三個主要機會。", "highlight + 名詞 表示強調或指出重點。", "highlight: 強調; major: 主要的; opportunity: 機會", "The analysis highlights a new market opportunity."],
+  ["We should set realistic quarterly goals.", "我們應該設定實際可行的季度目標。", "set + 目標 表示設定目標，realistic 表示實際可達成。", "realistic: 實際可行的; quarterly: 每季的; goal: 目標", "We should set realistic sales targets."],
+  ["The process needs more accountability.", "這個流程需要更明確的責任歸屬。", "accountability 指責任歸屬與負責機制，是管理常用字。", "process: 流程; accountability: 責任歸屬; need: 需要", "The project needs clear accountability."],
+  ["Let's negotiate terms that work for both sides.", "我們來協商對雙方都可行的條件。", "work for both sides 表示對雙方都有效或可接受。", "negotiate: 協商; terms: 條件; both sides: 雙方", "Let's negotiate a timeline that works for both teams."],
+  ["We need to communicate the change clearly.", "我們需要清楚傳達這項變更。", "communicate + 名詞 + clearly 表示清楚傳達資訊、變更或決策。", "communicate: 傳達; change: 變更; clearly: 清楚地", "We need to communicate the new policy clearly."],
+];
+
+const businessFrames = [
+  "商管英文常用清楚、直接的動詞，例如 align、prioritize、review、define 和 communicate。",
+  "這句適合用在會議、簡報、策略討論或跨部門協作，先說目標，再補充數據或原因。",
+  "如果要更正式，可以加上 based on the data 或 from a business perspective。",
+  "練習時把句中的部門、指標、產品或客戶替換掉，就能套用到實際工作情境。",
+  "商務溝通重點是精準，句子不必長，但要說清楚目的、責任與下一步。",
+];
+
 function publishDate(day) {
   const date = new Date(startDate);
   date.setUTCDate(startDate.getUTCDate() + day);
@@ -476,6 +513,19 @@ function itemForCourse(courseId, day) {
   if (courseId === "life-english") {
     const topic = lifeTopics[day % lifeTopics.length];
     const note = lifeFrames[Math.floor(day / lifeTopics.length) % lifeFrames.length];
+    return {
+      sentence: topic[0],
+      translation: topic[1],
+      grammarNote: topic[2],
+      usageNote: note,
+      vocabulary: topic[3],
+      example: topic[4],
+    };
+  }
+
+  if (courseId === "business-english") {
+    const topic = businessTopics[day % businessTopics.length];
+    const note = businessFrames[Math.floor(day / businessTopics.length) % businessFrames.length];
     return {
       sentence: topic[0],
       translation: topic[1],

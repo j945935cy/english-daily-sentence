@@ -433,6 +433,13 @@ textarea {
   --soft: #fff0f5;
 }
 
+.business-shell {
+  --accent: #4f5f86;
+  --accent-dark: #303a55;
+  --warm: #8a5a22;
+  --soft: #f0f3fb;
+}
+
 .grammar-title {
   font-size: clamp(1.8rem, 4.3vw, 4rem);
 }
@@ -454,6 +461,10 @@ textarea {
 }
 
 .life-title {
+  font-size: clamp(1.7rem, 4vw, 3.7rem);
+}
+
+.business-title {
   font-size: clamp(1.7rem, 4vw, 3.7rem);
 }
 
@@ -549,6 +560,10 @@ textarea {
 
 .portal-card.life::before {
   background: #7a4057;
+}
+
+.portal-card.business::before {
+  background: #4f5f86;
 }
 
 .portal-card span {

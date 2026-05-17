@@ -7,6 +7,7 @@ export const PATTERN_COURSE = "pattern-english";
 export const AI_COURSE = "ai-knowledge-english";
 export const TRAVEL_COURSE = "travel-english";
 export const LIFE_COURSE = "life-english";
+export const BUSINESS_COURSE = "business-english";
 
 export const courses = {
   [DEFAULT_COURSE]: {
@@ -62,6 +63,12 @@ export const courses = {
     slug: LIFE_COURSE,
     name: "每日一生活英文學習",
     description: "每天學一個日常生活英文句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
+  },
+  [BUSINESS_COURSE]: {
+    id: BUSINESS_COURSE,
+    slug: BUSINESS_COURSE,
+    name: "每日一商管英文學習",
+    description: "每天學一個商業管理英文句子，涵蓋會議、簡報、策略、財務、行銷、營運與領導等實用場景。",
   },
 } as const;
 
