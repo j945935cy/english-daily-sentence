@@ -444,7 +444,7 @@ textarea {
   min-height: 340px;
   border-bottom: 1px solid var(--line);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
   align-items: end;
   gap: 28px;
   padding: clamp(32px, 7vw, 86px) 0 30px;
@@ -463,18 +463,19 @@ textarea {
 }
 
 .portal-nav {
+  flex-wrap: wrap;
   justify-content: flex-end;
   margin-bottom: 0;
 }
 
 .portal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 18px;
 }
 
 .portal-card {
-  min-height: 360px;
+  min-height: 320px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
@@ -530,8 +531,8 @@ textarea {
 
 .portal-card h2 {
   color: #10272a;
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-  line-height: 1.08;
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
+  line-height: 1.14;
   margin-bottom: 0;
 }
 
