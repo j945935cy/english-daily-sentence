@@ -11,6 +11,7 @@ import {
   TRAVEL_COURSE,
   LIFE_COURSE,
   BUSINESS_COURSE,
+  CHAT_COURSE,
   type CourseSlug,
 } from "./courses";
 
@@ -26,6 +27,7 @@ export {
   TRAVEL_COURSE,
   LIFE_COURSE,
   BUSINESS_COURSE,
+  CHAT_COURSE,
   normalizeCourseSlug,
 } from "./courses";
 export type { CourseSlug } from "./courses";
@@ -119,6 +121,14 @@ const fallbackByCourse = {
     usageNote: "適合討論策略、產品方向、跨部門合作與客戶需求時使用。",
     vocabulary: "align: 對齊; strategy: 策略; customer needs: 客戶需求",
     example: "We need to align our budget with our priorities.",
+  },
+  [CHAT_COURSE]: {
+    sentence: "How has your day been so far?",
+    translation: "你今天到目前為止過得怎麼樣？",
+    grammarNote: "How has your day been...? 是自然寒暄句，用現在完成式詢問到目前為止的狀態。",
+    usageNote: "適合朋友、同事或熟人聊天開場，比 How are you? 更有延伸空間。",
+    vocabulary: "so far: 到目前為止; day: 一天; how has...been: ...過得如何",
+    example: "How has your week been so far?",
   },
 } satisfies Record<CourseSlug, SentenceFallback>;
 

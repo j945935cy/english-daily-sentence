@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
   "首頁",
-  "十一個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型、每日一AI知識英文學習、每日一旅遊英文學習、每日一生活英文學習與每日一商管英文學習。",
+  "十一個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型、每日一AI知識英文學習、每日一旅遊英文學習、每日一生活英文學習、每日一商管英文學習與每日一閒聊英語學習。",
 );
 
 const sites = [
@@ -89,6 +89,14 @@ const sites = [
     sample: "We need to align our strategy with customer needs.",
     tone: "business",
   },
+  {
+    href: "/chat",
+    label: "Chat English",
+    title: "每日一閒聊英語學習",
+    description: "每天一個自然聊天英語句子，練習寒暄、回應、邀約、近況與日常社交。",
+    sample: "How has your day been so far?",
+    tone: "chat",
+  },
 ];
 
 export default async function PortalPage() {
@@ -115,6 +123,7 @@ export default async function PortalPage() {
           <Link href="/travel">每日一旅遊英文學習</Link>
           <Link href="/life">每日一生活英文學習</Link>
           <Link href="/business">每日一商管英文學習</Link>
+          <Link href="/chat">每日一閒聊英語學習</Link>
           {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
         </nav>
       </section>

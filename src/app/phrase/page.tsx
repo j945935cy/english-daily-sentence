@@ -42,6 +42,7 @@ export default async function PhrasePage() {
         <Link href="/travel">每日一旅遊英文學習</Link>
         <Link href="/life">每日一生活英文學習</Link>
         <Link href="/business">每日一商管英文學習</Link>
+        <Link href="/chat">每日一閒聊英語學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 

@@ -8,6 +8,7 @@ export const AI_COURSE = "ai-knowledge-english";
 export const TRAVEL_COURSE = "travel-english";
 export const LIFE_COURSE = "life-english";
 export const BUSINESS_COURSE = "business-english";
+export const CHAT_COURSE = "chat-english";
 
 export const courses = {
   [DEFAULT_COURSE]: {
@@ -69,6 +70,12 @@ export const courses = {
     slug: BUSINESS_COURSE,
     name: "每日一商管英文學習",
     description: "每天學一個商業管理英文句子，涵蓋會議、簡報、策略、財務、行銷、營運與領導等實用場景。",
+  },
+  [CHAT_COURSE]: {
+    id: CHAT_COURSE,
+    slug: CHAT_COURSE,
+    name: "每日一閒聊英語學習",
+    description: "每天學一個自然閒聊英語句子，涵蓋寒暄、聊天回應、邀約、近況、興趣與日常社交等實用場景。",
   },
 } as const;
 

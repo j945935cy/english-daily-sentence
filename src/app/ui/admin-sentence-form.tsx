@@ -12,6 +12,7 @@ import {
   TRAVEL_COURSE,
   LIFE_COURSE,
   BUSINESS_COURSE,
+  CHAT_COURSE,
 } from "@/lib/courses";
 
 type Props = {
@@ -67,6 +68,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
           <option value={TRAVEL_COURSE}>每日一旅遊英文學習</option>
           <option value={LIFE_COURSE}>每日一生活英文學習</option>
           <option value={BUSINESS_COURSE}>每日一商管英文學習</option>
+          <option value={CHAT_COURSE}>每日一閒聊英語學習</option>
         </select>
       </label>
       <label>

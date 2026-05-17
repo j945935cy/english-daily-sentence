@@ -11,6 +11,7 @@ import {
   TRAVEL_COURSE,
   LIFE_COURSE,
   BUSINESS_COURSE,
+  CHAT_COURSE,
   type CourseSlug,
 } from "./courses";
 
@@ -54,6 +55,10 @@ const pushMeta = {
   [BUSINESS_COURSE]: {
     title: "每日一商管英文學習",
     url: "/business",
+  },
+  [CHAT_COURSE]: {
+    title: "每日一閒聊英語學習",
+    url: "/chat",
   },
 } satisfies Record<CourseSlug, { title: string; url: string }>;
 

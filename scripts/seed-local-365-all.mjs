@@ -72,6 +72,12 @@ const courses = [
     name: "每日一商管英文學習",
     description: "每天學一個商業管理英文句子，涵蓋會議、簡報、策略、財務、行銷、營運與領導等實用場景。",
   },
+  {
+    id: "chat-english",
+    slug: "chat-english",
+    name: "每日一閒聊英語學習",
+    description: "每天學一個自然閒聊英語句子，涵蓋寒暄、聊天回應、邀約、近況、興趣與日常社交等實用場景。",
+  },
 ];
 
 const dailyTopics = [
@@ -399,6 +405,37 @@ const businessFrames = [
   "商務溝通重點是精準，句子不必長，但要說清楚目的、責任與下一步。",
 ];
 
+const chatTopics = [
+  ["How has your day been so far?", "你今天到目前為止過得怎麼樣？", "How has your day been...? 是自然寒暄句，用現在完成式詢問到目前為止的狀態。", "so far: 到目前為止; day: 一天; how has...been: ...過得如何", "How has your week been so far?"],
+  ["That sounds really interesting.", "那聽起來真的很有趣。", "That sounds + 形容詞 用來回應對方分享，讓聊天更自然。", "sound: 聽起來; interesting: 有趣的; really: 真的", "That sounds really fun."],
+  ["What have you been up to lately?", "你最近都在忙些什麼？", "What have you been up to? 是口語問近況的自然說法。", "lately: 最近; be up to: 在忙/在做; what: 什麼", "What have you been up to this week?"],
+  ["I have been meaning to ask you about that.", "我一直想問你那件事。", "have been meaning to + 動詞 表示一直有某個打算但還沒做。", "mean to: 打算; ask: 詢問; about that: 關於那件事", "I have been meaning to call you."],
+  ["No worries, take your time.", "別擔心，慢慢來。", "No worries 是輕鬆口語回應，take your time 表示不用急。", "no worries: 沒關係; take your time: 慢慢來; rush: 趕", "No worries, take your time with the reply."],
+  ["I totally get what you mean.", "我完全懂你的意思。", "get what you mean 是口語的 understand what you mean。", "totally: 完全; get: 理解; mean: 意思是", "I get what you mean now."],
+  ["Do you feel like grabbing coffee later?", "你晚點想一起喝咖啡嗎？", "Do you feel like + V-ing? 用來輕鬆邀約。", "feel like: 想要; grab coffee: 喝咖啡; later: 晚點", "Do you feel like watching a movie tonight?"],
+  ["I am just taking it easy today.", "我今天就是放輕鬆一點。", "take it easy 表示放輕鬆或慢慢來。", "take it easy: 放輕鬆; just: 就只是; today: 今天", "I am taking it easy this weekend."],
+  ["That reminds me of something funny.", "那讓我想到一件有趣的事。", "remind me of + 名詞 表示讓我想起某事。", "remind: 使想起; funny: 有趣的; something: 某件事", "That reminds me of my first trip abroad."],
+  ["I am not sure, but I can check.", "我不確定，但我可以查一下。", "I am not sure, but... 是自然委婉的回應方式。", "not sure: 不確定; check: 查一下; but: 但是", "I am not sure, but I can ask someone."],
+  ["That is a good point.", "這點說得很好。", "good point 用來肯定對方提出的觀點。", "point: 觀點; good: 好的; that is: 那是", "That is a fair point."],
+  ["I have heard good things about it.", "我聽說那個不錯。", "have heard good things about... 表示聽過不錯的評價。", "hear: 聽說; good things: 好評; about it: 關於它", "I have heard good things about that restaurant."],
+  ["Let me know how it goes.", "到時候跟我說結果如何。", "Let me know... 用來請對方之後告知情況。", "let me know: 告訴我; how it goes: 進展如何; later: 之後", "Let me know how the meeting goes."],
+  ["I would love to, but I already have plans.", "我很想去，但我已經有安排了。", "I would love to, but... 是婉拒邀約的禮貌句。", "would love to: 很想; plans: 安排; already: 已經", "I would love to, but I have a class tonight."],
+  ["That makes sense.", "這樣說得通。", "make sense 表示合理、說得通或能理解。", "make sense: 說得通; understand: 理解; reasonable: 合理的", "That makes sense to me."],
+  ["I am in the mood for something light.", "我現在想吃/做點輕鬆的東西。", "be in the mood for + 名詞 表示現在想要某事物。", "in the mood for: 想要; light: 輕鬆/清淡; something: 某物", "I am in the mood for a light dinner."],
+  ["How did you get into that hobby?", "你是怎麼開始那個興趣的？", "get into + 名詞 表示開始對某事產生興趣。", "get into: 開始喜歡; hobby: 興趣; how: 如何", "How did you get into photography?"],
+  ["I have never thought about it that way.", "我從來沒那樣想過。", "have never thought about... 表示從未想過某件事。", "never: 從未; think about: 思考; that way: 那種方式", "I have never thought about English that way."],
+  ["Let's catch up sometime soon.", "我們找時間好好聊聊近況吧。", "catch up 表示聊近況，sometime soon 表示近期找時間。", "catch up: 聊近況; sometime soon: 近期某時; let's: 我們來", "Let's catch up over lunch sometime soon."],
+  ["I am glad you brought that up.", "我很高興你提到那件事。", "bring up 表示提起某個話題。", "bring up: 提起; glad: 高興; topic: 話題", "I am glad you brought up that question."],
+];
+
+const chatFrames = [
+  "閒聊英語重點是自然回應，不一定要說很長，但要讓對方感覺你有在接話。",
+  "這句適合朋友、同事或剛認識的人聊天，可以接著問一個簡短 follow-up question。",
+  "如果想更輕鬆，可以加上 actually、kind of、really 這類口語副詞。",
+  "練習時先記住整句，再替換時間、活動或對象，就能用在不同聊天場景。",
+  "自然聊天常用 That sounds...、I get it、Let me know... 這類簡短回應來延續話題。",
+];
+
 function publishDate(day) {
   const date = new Date(startDate);
   date.setUTCDate(startDate.getUTCDate() + day);
@@ -526,6 +563,19 @@ function itemForCourse(courseId, day) {
   if (courseId === "business-english") {
     const topic = businessTopics[day % businessTopics.length];
     const note = businessFrames[Math.floor(day / businessTopics.length) % businessFrames.length];
+    return {
+      sentence: topic[0],
+      translation: topic[1],
+      grammarNote: topic[2],
+      usageNote: note,
+      vocabulary: topic[3],
+      example: topic[4],
+    };
+  }
+
+  if (courseId === "chat-english") {
+    const topic = chatTopics[day % chatTopics.length];
+    const note = chatFrames[Math.floor(day / chatTopics.length) % chatFrames.length];
     return {
       sentence: topic[0],
       translation: topic[1],

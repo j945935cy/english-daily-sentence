@@ -440,6 +440,13 @@ textarea {
   --soft: #f0f3fb;
 }
 
+.chat-shell {
+  --accent: #6f5a2f;
+  --accent-dark: #4b3d20;
+  --warm: #7a4057;
+  --soft: #fbf6ea;
+}
+
 .grammar-title {
   font-size: clamp(1.8rem, 4.3vw, 4rem);
 }
@@ -465,6 +472,10 @@ textarea {
 }
 
 .business-title {
+  font-size: clamp(1.7rem, 4vw, 3.7rem);
+}
+
+.chat-title {
   font-size: clamp(1.7rem, 4vw, 3.7rem);
 }
 
@@ -564,6 +575,10 @@ textarea {
 
 .portal-card.business::before {
   background: #4f5f86;
+}
+
+.portal-card.chat::before {
+  background: #6f5a2f;
 }
 
 .portal-card span {

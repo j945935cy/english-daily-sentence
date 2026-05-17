@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { CHAT_COURSE, getRecentSentences, getTodaySentence } from "@/lib/sentences";
 import { getCurrentUser } from "@/lib/auth";
-import { getRecentSentences, getTodaySentence, MOTIVATION_COURSE } from "@/lib/sentences";
 import { pageMetadata } from "@/lib/metadata";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
@@ -8,33 +8,34 @@ import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
-  "每日一勵志英語",
-  "每天一句短而有力量的勵志英文，搭配中文解釋、句型重點、單字片語與朗讀練習。",
+  "每日一閒聊英語學習",
+  "每天學一個自然閒聊英語句子，練習寒暄、聊天回應、邀約、近況、興趣與日常社交常用英文。",
 );
 
-export default async function MotivationPage() {
-  const [user, todaySentence, recentSentences] = await Promise.all([
+export default async function ChatPage() {
+  const [user, todayLesson, recentLessons] = await Promise.all([
     getCurrentUser(),
-    getTodaySentence(MOTIVATION_COURSE),
-    getRecentSentences(MOTIVATION_COURSE),
+    getTodaySentence(CHAT_COURSE),
+    getRecentSentences(CHAT_COURSE),
   ]);
 
   return (
-    <main className="shell motivation-shell">
-      <section className="topbar" aria-label="主要頁面">
+    <main className="shell chat-shell">
+      <section className="topbar" aria-label="頁首">
         <div>
-          <p className="eyebrow">Motivational English</p>
-          <h1>每日一勵志英語</h1>
+          <p className="eyebrow">Chat English</p>
+          <h1>每日一閒聊英語學習</h1>
         </div>
         <AuthPanel user={user} />
       </section>
 
-      <nav className="main-nav" aria-label="主要頁面">
-        <Link href="/">入口站</Link>
-        <Link href="/motivation">今日句子</Link>
-        <Link href="/motivation/history">歷史句子</Link>
+      <nav className="main-nav" aria-label="主選單">
+        <Link href="/">首頁</Link>
+        <Link href="/chat">今日閒聊英語</Link>
+        <Link href="/chat/history">閒聊英語歷史</Link>
         <Link href="/daily">每日一句英文</Link>
         <Link href="/kids">小學生每日一句英語</Link>
+        <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
@@ -42,55 +43,54 @@ export default async function MotivationPage() {
         <Link href="/travel">每日一旅遊英文學習</Link>
         <Link href="/life">每日一生活英文學習</Link>
         <Link href="/business">每日一商管英文學習</Link>
-        <Link href="/chat">每日一閒聊英語學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
       <section className="learning-layout">
         <article className="lesson">
           <div className="lesson-date">
-            {todaySentence.publishDate.toLocaleDateString("zh-TW", {
+            {todayLesson.publishDate.toLocaleDateString("zh-TW", {
               month: "long",
               day: "numeric",
               weekday: "long",
             })}
           </div>
-          <p className="sentence">{todaySentence.sentence}</p>
-          <SpeakButton text={todaySentence.sentence} />
-          <p className="translation">{todaySentence.translation}</p>
+          <p className="sentence chat-title">{todayLesson.sentence}</p>
+          <SpeakButton text={todayLesson.sentence} />
+          <p className="translation">{todayLesson.translation}</p>
 
           <div className="explain-grid">
             <section>
               <h2>句型重點</h2>
-              <p>{todaySentence.grammarNote}</p>
+              <p>{todayLesson.grammarNote}</p>
             </section>
             <section>
-              <h2>生活用法</h2>
-              <p>{todaySentence.usageNote}</p>
+              <h2>閒聊情境</h2>
+              <p>{todayLesson.usageNote}</p>
             </section>
             <section>
-              <h2>單字片語</h2>
-              <p>{todaySentence.vocabulary}</p>
+              <h2>實用單字</h2>
+              <p>{todayLesson.vocabulary}</p>
             </section>
             <section>
-              <h2>延伸例句</h2>
-              <p>{todaySentence.example}</p>
+              <h2>替換例句</h2>
+              <p>{todayLesson.example}</p>
             </section>
           </div>
         </article>
 
         <aside className="side-panel">
           <div className="panel-block">
-            <h2>手機推送</h2>
-            <p>登入後可訂閱每日勵志英文通知。每天一句短句，讓英文練習和自我鼓勵一起前進。</p>
-            <PushButton isSignedIn={Boolean(user)} courseId={MOTIVATION_COURSE} />
+            <h2>訂閱閒聊英語</h2>
+            <p>登入後可以訂閱每日閒聊英語推播，每天練一個自然聊天會用到的英文句子。</p>
+            <PushButton isSignedIn={Boolean(user)} courseId={CHAT_COURSE} />
           </div>
 
           <div className="panel-block">
-            <h2>最近句子</h2>
+            <h2>最近閒聊英語</h2>
             <div className="history-list compact">
-              {recentSentences.map((item) => (
-                <Link key={item.id} href="/motivation/history" className="history-item">
+              {recentLessons.map((item) => (
+                <Link key={item.id} href="/chat/history" className="history-item">
                   <time>
                     {item.publishDate.toLocaleDateString("zh-TW", {
                       month: "numeric",
