@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { getAllSentences, PHRASE_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一片語歷史句子",
+  "瀏覽每日一片語的歷史內容、片語意思、使用情境、搭配詞與自然例句。",
+);
 
 export default async function PhraseHistoryPage() {
   const phrases = await getAllSentences(PHRASE_COURSE);

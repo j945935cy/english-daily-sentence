@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { getAllSentences, GRAMMAR_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一文法歷史句子",
+  "瀏覽每日一文法的歷史單元、文法規則、中文解釋與例句練習。",
+);
 
 export default async function GrammarHistoryPage() {
   const sentences = await getAllSentences(GRAMMAR_COURSE);

@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { DEFAULT_COURSE, getAllSentences } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一句英文歷史句子",
+  "瀏覽每日一句英文的歷史句子、中文解釋、文法重點與延伸例句。",
+);
 
 export default async function HistoryPage() {
   const sentences = await getAllSentences(DEFAULT_COURSE);

@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { getAllSentences, PATTERN_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一句型歷史句子",
+  "瀏覽每日一句型的歷史句型、句型拆解、替換用法與例句練習。",
+);
 
 export default async function PatternHistoryPage() {
   const patterns = await getAllSentences(PATTERN_COURSE);

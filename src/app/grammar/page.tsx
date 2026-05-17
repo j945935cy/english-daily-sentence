@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { getRecentSentences, getTodaySentence, GRAMMAR_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一文法",
+  "每天一個英文文法小單元，用規則、例句、用法與練習建立英文句子能力。",
+);
 
 export default async function GrammarPage() {
   const [user, todaySentence, recentSentences] = await Promise.all([
@@ -30,7 +35,7 @@ export default async function GrammarPage() {
         <Link href="/grammar/history">歷史文法</Link>
         <Link href="/daily">每日一句英文</Link>
         <Link href="/kids">小學生每日一句英語</Link>
-        <Link href="/motivation">勵志英語</Link>
+        <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}

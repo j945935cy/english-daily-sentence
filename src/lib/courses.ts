@@ -21,7 +21,7 @@ export const courses = {
   [MOTIVATION_COURSE]: {
     id: MOTIVATION_COURSE,
     slug: MOTIVATION_COURSE,
-    name: "勵志英語",
+    name: "每日一勵志英語",
     description: "每天一句短而有力量的英文，陪你練習語感，也練習往前走。",
   },
   [GRAMMAR_COURSE]: {

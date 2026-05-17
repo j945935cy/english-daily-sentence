@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { getRecentSentences, getTodaySentence, KIDS_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "小學生每日一句英語",
+  "為小學生設計的每日一句英語，使用短句、生活情境、基礎單字與可朗讀例句建立英文信心。",
+);
 
 export default async function KidsPage() {
   const [user, todaySentence, recentSentences] = await Promise.all([
@@ -29,7 +34,7 @@ export default async function KidsPage() {
         <Link href="/kids">今日句子</Link>
         <Link href="/kids/history">歷史句子</Link>
         <Link href="/daily">每日一句英文</Link>
-        <Link href="/motivation">勵志英語</Link>
+        <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>

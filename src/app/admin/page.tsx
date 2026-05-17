@@ -3,11 +3,16 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { getViewStats } from "@/lib/analytics";
 import { getAllSentences } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 import { AdminSentenceForm } from "../ui/admin-sentence-form";
 import { AnalyticsPanel } from "../ui/analytics-panel";
 import { PushTestPanel } from "../ui/push-test-panel";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "管理後台",
+  "管理每日英文學習入口站的句子內容、使用者、推播測試與瀏覽統計。",
+);
 
 export default async function AdminPage() {
   const user = await getCurrentUser();

@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { getRecentSentences, getTodaySentence, MOTIVATION_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一勵志英語",
+  "每天一句短而有力量的勵志英文，搭配中文解釋、句型重點、單字片語與朗讀練習。",
+);
 
 export default async function MotivationPage() {
   const [user, todaySentence, recentSentences] = await Promise.all([
@@ -19,7 +24,7 @@ export default async function MotivationPage() {
       <section className="topbar" aria-label="主要頁面">
         <div>
           <p className="eyebrow">Motivational English</p>
-          <h1>勵志英語</h1>
+          <h1>每日一勵志英語</h1>
         </div>
         <AuthPanel user={user} />
       </section>

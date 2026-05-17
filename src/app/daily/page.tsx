@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { DEFAULT_COURSE, getRecentSentences, getTodaySentence } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
 import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一句英文",
+  "每天一句實用英文，搭配中文解釋、文法重點、單字片語、朗讀與手機推播。",
+);
 
 export default async function DailyPage() {
   const [user, todaySentence, recentSentences] = await Promise.all([
@@ -29,7 +34,7 @@ export default async function DailyPage() {
         <Link href="/daily">今日句子</Link>
         <Link href="/history">歷史句子</Link>
         <Link href="/kids">小學生每日一句英語</Link>
-        <Link href="/motivation">勵志英語</Link>
+        <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>

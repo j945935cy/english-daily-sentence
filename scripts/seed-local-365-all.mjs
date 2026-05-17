@@ -27,7 +27,7 @@ const courses = [
   {
     id: "motivational-english",
     slug: "motivational-english",
-    name: "勵志英語",
+    name: "每日一勵志英語",
     description: "每天一句短而有力量的英文，陪你練習語感，也練習往前走。",
   },
   {

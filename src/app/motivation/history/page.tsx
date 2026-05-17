@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { getAllSentences, MOTIVATION_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "每日一勵志英語歷史句子",
+  "瀏覽每日一勵志英語的歷史句子、中文解釋、句型重點與單字片語。",
+);
 
 export default async function MotivationHistoryPage() {
   const sentences = await getAllSentences(MOTIVATION_COURSE);
@@ -11,10 +16,10 @@ export default async function MotivationHistoryPage() {
       <section className="page-heading">
         <div>
           <p className="eyebrow">Motivation Archive</p>
-          <h1>勵志英語歷史句子</h1>
+          <h1>每日一勵志英語歷史句子</h1>
         </div>
         <Link href="/motivation" className="ghost-button">
-          回到勵志英語
+          回到每日一勵志英語
         </Link>
       </section>
 

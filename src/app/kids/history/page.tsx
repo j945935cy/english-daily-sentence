@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { getAllSentences, KIDS_COURSE } from "@/lib/sentences";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "小學生每日一句英語歷史句子",
+  "瀏覽小學生每日一句英語的歷史短句、中文解釋、基礎單字與例句。",
+);
 
 export default async function KidsHistoryPage() {
   const sentences = await getAllSentences(KIDS_COURSE);

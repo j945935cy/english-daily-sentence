@@ -20,7 +20,7 @@ const pushMeta = {
     url: "/kids",
   },
   [MOTIVATION_COURSE]: {
-    title: "勵志英語",
+    title: "每日一勵志英語",
     url: "/motivation",
   },
   [GRAMMAR_COURSE]: {
