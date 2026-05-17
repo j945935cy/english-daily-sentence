@@ -5,6 +5,7 @@ import {
   GRAMMAR_COURSE,
   KIDS_COURSE,
   MOTIVATION_COURSE,
+  PATTERN_COURSE,
   PHRASE_COURSE,
   type CourseSlug,
 } from "./courses";
@@ -15,6 +16,7 @@ export {
   GRAMMAR_COURSE,
   KIDS_COURSE,
   MOTIVATION_COURSE,
+  PATTERN_COURSE,
   PHRASE_COURSE,
   normalizeCourseSlug,
 } from "./courses";
@@ -69,6 +71,14 @@ const fallbackByCourse = {
     usageNote: "遇到不懂的單字時，可以說 look up the word。",
     vocabulary: "look up: 查詢；word: 單字；dictionary: 字典。",
     example: "I need to look up this word.",
+  },
+  [PATTERN_COURSE]: {
+    sentence: "It is easy to + verb.",
+    translation: "做某件事很容易。",
+    grammarNote: "It is + 形容詞 + to + 原形動詞，用來說明做某事的感受或難易度。",
+    usageNote: "可替換形容詞和動詞，例如 easy、hard、important 搭配 learn、practice、remember。",
+    vocabulary: "easy: 容易的；verb: 動詞；pattern: 句型。",
+    example: "It is easy to practice English for five minutes.",
   },
 } satisfies Record<CourseSlug, SentenceFallback>;
 

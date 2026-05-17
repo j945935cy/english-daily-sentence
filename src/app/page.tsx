@@ -15,7 +15,7 @@ const sites = [
   {
     href: "/kids",
     label: "Kids English",
-    title: "小學生入門英語",
+    title: "小學生每日一句英語",
     description: "短句、簡單、生活化，適合小學生從課堂與日常用語開始建立英文信心。",
     sample: "Good morning.",
     tone: "kids",
@@ -44,6 +44,14 @@ const sites = [
     sample: "look up",
     tone: "phrase",
   },
+  {
+    href: "/pattern",
+    label: "Sentence Pattern",
+    title: "每日一句型",
+    description: "每天一個實用句型，練習替換字詞並自然說出完整英文句子。",
+    sample: "It is easy to + verb.",
+    tone: "pattern",
+  },
 ];
 
 export default async function PortalPage() {
@@ -61,10 +69,11 @@ export default async function PortalPage() {
         </div>
         <nav className="main-nav portal-nav" aria-label="主要頁面">
           <Link href="/daily">每日一句英文</Link>
-          <Link href="/kids">小學生入門英語</Link>
+          <Link href="/kids">小學生每日一句英語</Link>
           <Link href="/motivation">勵志英語</Link>
           <Link href="/grammar">每日一文法</Link>
           <Link href="/phrase">每日一片語</Link>
+          <Link href="/pattern">每日一句型</Link>
           {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
         </nav>
       </section>

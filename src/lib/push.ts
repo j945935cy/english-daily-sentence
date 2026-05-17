@@ -5,6 +5,7 @@ import {
   GRAMMAR_COURSE,
   KIDS_COURSE,
   MOTIVATION_COURSE,
+  PATTERN_COURSE,
   PHRASE_COURSE,
   type CourseSlug,
 } from "./courses";
@@ -15,7 +16,7 @@ const pushMeta = {
     url: "/daily",
   },
   [KIDS_COURSE]: {
-    title: "小學生入門英語",
+    title: "小學生每日一句英語",
     url: "/kids",
   },
   [MOTIVATION_COURSE]: {
@@ -29,6 +30,10 @@ const pushMeta = {
   [PHRASE_COURSE]: {
     title: "每日一片語",
     url: "/phrase",
+  },
+  [PATTERN_COURSE]: {
+    title: "每日一句型",
+    url: "/pattern",
   },
 } satisfies Record<CourseSlug, { title: string; url: string }>;
 
