@@ -40,6 +40,7 @@ export default async function DailyPage() {
         <Link href="/pattern">每日一句型</Link>
         <Link href="/ai">每日一AI知識英文學習</Link>
         <Link href="/travel">每日一旅遊英文學習</Link>
+        <Link href="/life">每日一生活英文學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 

@@ -60,6 +60,12 @@ const courses = [
     name: "每日一旅遊英文學習",
     description: "每天學一個旅遊情境英文句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
   },
+  {
+    id: "life-english",
+    slug: "life-english",
+    name: "每日一生活英文學習",
+    description: "每天學一個日常生活英文句子，涵蓋居家、購物、工作、社交、健康與日常溝通等實用場景。",
+  },
 ];
 
 const dailyTopics = [
@@ -325,6 +331,37 @@ const travelFrames = [
   "出國時可先練關鍵單字，再練完整句，臨場比較容易說出口。",
 ];
 
+const lifeTopics = [
+  ["I need to pick up some groceries after work.", "我下班後需要去買一些日用品和食材。", "need to + 動詞原形 表示需要做某事，pick up 在生活英文中常表示順路買或拿。", "pick up: 順路買/拿; groceries: 日用品與食材; after work: 下班後", "I need to pick up my package after work."],
+  ["Could you turn down the volume?", "可以把音量調小一點嗎？", "Could you + 動詞原形 是禮貌請求句，turn down 可表示調低音量或溫度。", "turn down: 調低; volume: 音量; noisy: 吵的", "Could you turn down the air conditioner?"],
+  ["I am running late this morning.", "我今天早上快遲到了。", "be running late 表示行程延誤或快遲到。", "run late: 快遲到; this morning: 今天早上; hurry: 趕快", "I am running late for the meeting."],
+  ["Can you remind me to pay the bill?", "你可以提醒我繳帳單嗎？", "remind me to + 動詞原形 表示提醒我做某事。", "remind: 提醒; pay the bill: 繳帳單; due date: 到期日", "Can you remind me to call Mom tonight?"],
+  ["I have to clean up the kitchen.", "我必須整理廚房。", "have to + 動詞原形 表示必須做某事，clean up 表示清理整理。", "clean up: 清理; kitchen: 廚房; mess: 混亂", "I have to clean up my desk."],
+  ["Let's grab lunch nearby.", "我們在附近簡單吃個午餐吧。", "Let's + 動詞原形 用來提出建議，grab lunch 是口語的吃午餐。", "grab lunch: 吃午餐; nearby: 附近; quick: 快速的", "Let's grab coffee after class."],
+  ["I forgot to bring my umbrella.", "我忘了帶雨傘。", "forgot to + 動詞原形 表示忘記要做某事。", "forget: 忘記; bring: 帶來; umbrella: 雨傘", "I forgot to bring my keys."],
+  ["The laundry is still wet.", "衣服還是濕的。", "still 表示仍然，常用來描述狀態還沒有改變。", "laundry: 洗好的衣物; wet: 濕的; dry: 乾的", "The towel is still wet."],
+  ["Could you help me carry this box?", "可以幫我搬這個箱子嗎？", "help me + 動詞原形 用來請人協助完成動作。", "carry: 搬/拿; box: 箱子; heavy: 重的", "Could you help me carry these bags?"],
+  ["I need to make a quick phone call.", "我需要快速打一通電話。", "make a phone call 表示打電話，quick 表示短時間的。", "phone call: 電話; quick: 快速的; message: 訊息", "I need to make a quick call before dinner."],
+  ["What should I wear today?", "我今天應該穿什麼？", "What should I...? 用來詢問建議。", "wear: 穿; weather: 天氣; jacket: 外套", "What should I bring to the party?"],
+  ["I am out of toothpaste.", "我的牙膏用完了。", "be out of + 名詞 表示某物用完了。", "out of: 用完; toothpaste: 牙膏; shampoo: 洗髮精", "We are out of milk."],
+  ["Could you leave the package at the door?", "可以把包裹放在門口嗎？", "leave + 物品 + 地點 表示把東西留在某處。", "package: 包裹; door: 門口; delivery: 配送", "Please leave the keys on the table."],
+  ["I need to reschedule my appointment.", "我需要改約時間。", "reschedule 表示重新安排時間，常用於預約、會議或看診。", "reschedule: 改期; appointment: 預約; available: 有空的", "Can I reschedule my dentist appointment?"],
+  ["This shirt does not fit me well.", "這件襯衫不太合身。", "fit 表示尺寸合適，does not fit well 表示不太合身。", "fit: 合身; shirt: 襯衫; size: 尺寸", "These shoes do not fit me well."],
+  ["I feel a little under the weather.", "我覺得有點不舒服。", "under the weather 是口語片語，表示身體不太舒服。", "under the weather: 身體不適; rest: 休息; medicine: 藥", "She feels under the weather today."],
+  ["Can we split the bill?", "我們可以分開付帳嗎？", "split the bill 表示分帳或各付各的。", "split: 分開; bill: 帳單; cash: 現金", "Let's split the bill evenly."],
+  ["I need to charge my phone.", "我需要幫手機充電。", "charge + 物品 表示為某物充電。", "charge: 充電; phone: 手機; battery: 電池", "I need to charge my laptop."],
+  ["Could you send me the address?", "可以把地址傳給我嗎？", "send me + 名詞 表示傳某物給我，也可用 email me 或 text me。", "send: 傳送; address: 地址; text: 傳訊息", "Could you send me the meeting link?"],
+  ["I will take care of it today.", "我今天會處理這件事。", "take care of 表示處理或照顧某事物。", "take care of: 處理/照顧; today: 今天; task: 任務", "I will take care of the dishes tonight."],
+];
+
+const lifeFrames = [
+  "這句適合日常生活情境，先練核心動詞，再替換人、時間或物品。",
+  "生活英文常用簡短自然的說法，像 need to、have to、Can you...? 都很實用。",
+  "如果想更客氣，可以把 Can you...? 換成 Could you...?。",
+  "把句子放進自己的生活行程裡練習，臨時要說時會更容易想起來。",
+  "這類句子適合用在家裡、公司、商店、餐廳或朋友聊天時。",
+];
+
 function publishDate(day) {
   const date = new Date(startDate);
   date.setUTCDate(startDate.getUTCDate() + day);
@@ -426,6 +463,19 @@ function itemForCourse(courseId, day) {
   if (courseId === "travel-english") {
     const topic = travelTopics[day % travelTopics.length];
     const note = travelFrames[Math.floor(day / travelTopics.length) % travelFrames.length];
+    return {
+      sentence: topic[0],
+      translation: topic[1],
+      grammarNote: topic[2],
+      usageNote: note,
+      vocabulary: topic[3],
+      example: topic[4],
+    };
+  }
+
+  if (courseId === "life-english") {
+    const topic = lifeTopics[day % lifeTopics.length];
+    const note = lifeFrames[Math.floor(day / lifeTopics.length) % lifeFrames.length];
     return {
       sentence: topic[0],
       translation: topic[1],

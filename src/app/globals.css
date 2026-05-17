@@ -426,6 +426,13 @@ textarea {
   --soft: #fff4e6;
 }
 
+.life-shell {
+  --accent: #7a4057;
+  --accent-dark: #54283a;
+  --warm: #3d6f4d;
+  --soft: #fff0f5;
+}
+
 .grammar-title {
   font-size: clamp(1.8rem, 4.3vw, 4rem);
 }
@@ -443,6 +450,10 @@ textarea {
 }
 
 .travel-title {
+  font-size: clamp(1.7rem, 4vw, 3.7rem);
+}
+
+.life-title {
   font-size: clamp(1.7rem, 4vw, 3.7rem);
 }
 
@@ -534,6 +545,10 @@ textarea {
 
 .portal-card.travel::before {
   background: #8a5a22;
+}
+
+.portal-card.life::before {
+  background: #7a4057;
 }
 
 .portal-card span {
