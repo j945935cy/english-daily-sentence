@@ -5,6 +5,7 @@ export const GRAMMAR_COURSE = "grammar-english";
 export const PHRASE_COURSE = "phrase-english";
 export const PATTERN_COURSE = "pattern-english";
 export const AI_COURSE = "ai-knowledge-english";
+export const TRAVEL_COURSE = "travel-english";
 
 export const courses = {
   [DEFAULT_COURSE]: {
@@ -48,6 +49,12 @@ export const courses = {
     slug: AI_COURSE,
     name: "每日一AI知識英文學習",
     description: "每天用一句英文認識 AI 概念、工具、風險與應用情境。",
+  },
+  [TRAVEL_COURSE]: {
+    id: TRAVEL_COURSE,
+    slug: TRAVEL_COURSE,
+    name: "每日一旅遊英文學習",
+    description: "每天學一個旅遊情境英文句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
   },
 } as const;
 

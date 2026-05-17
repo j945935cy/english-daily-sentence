@@ -8,6 +8,7 @@ import {
   MOTIVATION_COURSE,
   PATTERN_COURSE,
   PHRASE_COURSE,
+  TRAVEL_COURSE,
   type CourseSlug,
 } from "./courses";
 
@@ -20,6 +21,7 @@ export {
   MOTIVATION_COURSE,
   PATTERN_COURSE,
   PHRASE_COURSE,
+  TRAVEL_COURSE,
   normalizeCourseSlug,
 } from "./courses";
 export type { CourseSlug } from "./courses";
@@ -89,6 +91,14 @@ const fallbackByCourse = {
     usageNote: "適合說明 AI 的基本能力，例如分析資料、整理資訊或提供建議。",
     vocabulary: "AI: 人工智慧；pattern: 模式；data: 資料。",
     example: "AI can help doctors review medical images.",
+  },
+  [TRAVEL_COURSE]: {
+    sentence: "Could you tell me where the train station is?",
+    translation: "請問你可以告訴我火車站在哪裡嗎？",
+    grammarNote: "Could you tell me where...? 是禮貌問路句型，後面接完整子句。",
+    usageNote: "適合在旅行時詢問車站、出口、櫃台、廁所或景點位置。",
+    vocabulary: "train station: 火車站; tell me: 告訴我; where: 哪裡",
+    example: "Could you tell me where the check-in counter is?",
   },
 } satisfies Record<CourseSlug, SentenceFallback>;
 

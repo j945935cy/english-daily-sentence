@@ -9,6 +9,7 @@ import {
   MOTIVATION_COURSE,
   PATTERN_COURSE,
   PHRASE_COURSE,
+  TRAVEL_COURSE,
 } from "@/lib/courses";
 
 type Props = {
@@ -61,6 +62,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
           <option value={PHRASE_COURSE}>每日一片語</option>
           <option value={PATTERN_COURSE}>每日一句型</option>
           <option value={AI_COURSE}>每日一AI知識英文學習</option>
+          <option value={TRAVEL_COURSE}>每日一旅遊英文學習</option>
         </select>
       </label>
       <label>

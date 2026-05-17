@@ -54,6 +54,12 @@ const courses = [
     name: "每日一AI知識英文學習",
     description: "每天用一句英文認識 AI 概念、工具、風險與應用情境。",
   },
+  {
+    id: "travel-english",
+    slug: "travel-english",
+    name: "每日一旅遊英文學習",
+    description: "每天學一個旅遊情境英文句子，涵蓋機場、飯店、交通、點餐、問路與購物等實用場景。",
+  },
 ];
 
 const dailyTopics = [
@@ -288,6 +294,37 @@ const patternFrames = [
   "把句型念慢一點，確認每個位置放什麼詞。",
 ];
 
+const travelTopics = [
+  ["Could you tell me where the train station is?", "請問你可以告訴我火車站在哪裡嗎？", "Could you tell me where...? 是禮貌問路句型，後面接完整子句。", "train station: 火車站; tell me: 告訴我; where: 哪裡", "Could you tell me where the check-in counter is?"],
+  ["I would like to check in, please.", "您好，我想辦理入住。", "I would like to... 比 I want to... 更禮貌，適合飯店與服務櫃台。", "check in: 辦理入住/報到; reservation: 訂位; passport: 護照", "I would like to check in for my flight."],
+  ["How much is a one-way ticket?", "單程票多少錢？", "How much is...? 用來詢問價格，one-way ticket 表示單程票。", "one-way ticket: 單程票; round-trip ticket: 來回票; fare: 票價", "How much is a round-trip ticket to Kyoto?"],
+  ["Can I have the menu, please?", "可以給我菜單嗎？", "Can I have...? 是點餐和索取物品時常用的禮貌句。", "menu: 菜單; bill: 帳單; water: 水", "Can I have the bill, please?"],
+  ["Is this seat taken?", "這個座位有人坐嗎？", "Is this...? 用來確認狀態，taken 在這裡表示已被使用。", "seat: 座位; taken: 被佔用; available: 可用的", "Is this table available?"],
+  ["I am looking for Gate 12.", "我正在找 12 號登機門。", "I am looking for... 表示正在尋找某個地方或物品。", "gate: 登機門; terminal: 航廈; boarding pass: 登機證", "I am looking for the baggage claim area."],
+  ["Could you recommend a local restaurant?", "可以推薦一家當地餐廳嗎？", "Could you recommend...? 適合請人推薦餐廳、景點或行程。", "recommend: 推薦; local: 當地的; restaurant: 餐廳", "Could you recommend a quiet cafe nearby?"],
+  ["Where can I buy a SIM card?", "我可以在哪裡買 SIM 卡？", "Where can I...? 用來詢問可以在哪裡完成某件事。", "SIM card: SIM 卡; buy: 購買; nearby: 附近", "Where can I exchange money?"],
+  ["I have a reservation under Chen.", "我有一筆陳先生/小姐名下的訂位。", "under + 姓氏 可表示訂位或預約登記在某個名字底下。", "reservation: 訂位; under: 以...名義; front desk: 櫃台", "I have a booking under Wang."],
+  ["Could you take a photo for us?", "可以幫我們拍張照嗎？", "Could you...? 是禮貌請求句，適合向陌生人請求協助。", "take a photo: 拍照; for us: 幫我們; camera: 相機", "Could you take one more photo for us?"],
+  ["Does this bus go to the airport?", "這班公車有到機場嗎？", "Does this bus go to...? 用來確認交通工具是否到某地。", "bus: 公車; airport: 機場; stop: 站牌", "Does this train go to the city center?"],
+  ["I need a taxi to the hotel.", "我需要一台計程車到飯店。", "I need + 名詞 + to + 地點，可以清楚表達交通需求。", "taxi: 計程車; hotel: 飯店; address: 地址", "I need a taxi to the airport."],
+  ["Could I try this on?", "我可以試穿這件嗎？", "try on 用於試穿衣服、鞋子或配件。", "try on: 試穿; size: 尺寸; fitting room: 試衣間", "Could I try these shoes on?"],
+  ["Do you accept credit cards?", "你們收信用卡嗎？", "Do you accept...? 用來詢問店家是否接受某種付款方式。", "credit card: 信用卡; cash: 現金; receipt: 收據", "Do you accept mobile payments?"],
+  ["I think I am lost.", "我想我迷路了。", "I think... 可以降低語氣，讓求助聽起來自然。", "lost: 迷路; map: 地圖; direction: 方向", "I think I got on the wrong train."],
+  ["What time does the museum open?", "博物館幾點開門？", "What time does...? 用來詢問營業、開放或出發時間。", "museum: 博物館; open: 開門; close: 關門", "What time does the last train leave?"],
+  ["Could you speak more slowly?", "可以請你說慢一點嗎？", "more slowly 用來請對方放慢速度，適合聽不清楚時使用。", "slowly: 慢慢地; repeat: 重複; understand: 了解", "Could you repeat that more slowly?"],
+  ["I would like a room with a view.", "我想要一間有景觀的房間。", "with a view 用來描述有景觀的房型或座位。", "room: 房間; view: 景觀; upgrade: 升等", "I would like a table with a view."],
+  ["Is there a convenience store nearby?", "附近有便利商店嗎？", "Is there...? 用來詢問某地是否有某項設施。", "convenience store: 便利商店; nearby: 附近; pharmacy: 藥局", "Is there an ATM nearby?"],
+  ["Could you help me call the hotel?", "可以幫我打電話給飯店嗎？", "help me + 動詞原形 用來請人協助完成某個動作。", "call: 打電話; help me: 幫我; hotel: 飯店", "Could you help me call a taxi?"],
+];
+
+const travelFrames = [
+  "旅行時先用禮貌句型開頭，像 Could you...? 或 I would like to...，通常更自然。",
+  "這句適合在機場、飯店、車站或餐廳使用，先說清楚需求，再補充地點或時間。",
+  "如果聽不懂對方回答，可以接著說 Could you repeat that, please? 請對方再說一次。",
+  "把句中的地點、交通工具或物品替換掉，就能變成很多旅行現場可用的句子。",
+  "出國時可先練關鍵單字，再練完整句，臨場比較容易說出口。",
+];
+
 function publishDate(day) {
   const date = new Date(startDate);
   date.setUTCDate(startDate.getUTCDate() + day);
@@ -376,6 +413,19 @@ function itemForCourse(courseId, day) {
   if (courseId === "ai-knowledge-english") {
     const topic = aiTopics[day % aiTopics.length];
     const note = aiFrames[Math.floor(day / aiTopics.length) % aiFrames.length];
+    return {
+      sentence: topic[0],
+      translation: topic[1],
+      grammarNote: topic[2],
+      usageNote: note,
+      vocabulary: topic[3],
+      example: topic[4],
+    };
+  }
+
+  if (courseId === "travel-english") {
+    const topic = travelTopics[day % travelTopics.length];
+    const note = travelFrames[Math.floor(day / travelTopics.length) % travelFrames.length];
     return {
       sentence: topic[0],
       translation: topic[1],

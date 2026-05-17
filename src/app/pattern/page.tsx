@@ -39,6 +39,7 @@ export default async function PatternPage() {
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/ai">每日一AI知識英文學習</Link>
+        <Link href="/travel">每日一旅遊英文學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
