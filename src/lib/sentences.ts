@@ -41,6 +41,8 @@ type SentenceFallback = {
   example: string;
 };
 
+let coursesPromise: Promise<void> | null = null;
+
 const fallbackByCourse = {
   [DEFAULT_COURSE]: {
     sentence: "Small steps every day lead to remarkable progress.",
@@ -133,21 +135,24 @@ const fallbackByCourse = {
 } satisfies Record<CourseSlug, SentenceFallback>;
 
 export async function ensureCourses() {
+  coursesPromise ??= setupCourses();
+  await coursesPromise;
+}
+
+async function setupCourses() {
   await ensureDatabase();
 
-  await Promise.all(
-    Object.values(courses).map((course) =>
-      prisma.course.upsert({
-        where: { id: course.id },
-        update: {
-          slug: course.slug,
-          name: course.name,
-          description: course.description,
-        },
-        create: course,
-      }),
-    ),
-  );
+  for (const course of Object.values(courses)) {
+    await prisma.course.upsert({
+      where: { id: course.id },
+      update: {
+        slug: course.slug,
+        name: course.name,
+        description: course.description,
+      },
+      create: course,
+    });
+  }
 }
 
 export async function getTodaySentence(courseSlug: CourseSlug = DEFAULT_COURSE) {
