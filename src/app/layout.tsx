@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "每日英文學習入口站",
     template: "%s",
   },
-  description: "整合每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語與每日一句型的英文學習網站。",
+  description: "整合每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型與每日一AI知識英文學習的英文學習網站。",
   manifest: "/manifest.json",
 };
 

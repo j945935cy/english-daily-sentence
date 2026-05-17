@@ -1,6 +1,7 @@
 import { ensureDatabase, prisma } from "./prisma";
 import {
   courses,
+  AI_COURSE,
   DEFAULT_COURSE,
   GRAMMAR_COURSE,
   KIDS_COURSE,
@@ -12,6 +13,7 @@ import {
 
 export {
   courses,
+  AI_COURSE,
   DEFAULT_COURSE,
   GRAMMAR_COURSE,
   KIDS_COURSE,
@@ -79,6 +81,14 @@ const fallbackByCourse = {
     usageNote: "可替換形容詞和動詞，例如 easy、hard、important 搭配 learn、practice、remember。",
     vocabulary: "easy: 容易的；verb: 動詞；pattern: 句型。",
     example: "It is easy to practice English for five minutes.",
+  },
+  [AI_COURSE]: {
+    sentence: "AI can help people find patterns in data.",
+    translation: "AI 可以幫助人們在資料中找出模式。",
+    grammarNote: "can help + 受詞 + 原形動詞，用來表示某工具能協助某人完成動作。",
+    usageNote: "適合說明 AI 的基本能力，例如分析資料、整理資訊或提供建議。",
+    vocabulary: "AI: 人工智慧；pattern: 模式；data: 資料。",
+    example: "AI can help doctors review medical images.",
   },
 } satisfies Record<CourseSlug, SentenceFallback>;
 

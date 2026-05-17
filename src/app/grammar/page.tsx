@@ -38,6 +38,7 @@ export default async function GrammarPage() {
         <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
+        <Link href="/ai">每日一AI知識英文學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 

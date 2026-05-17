@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
   "首頁",
-  "六個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語與每日一句型。",
+  "七個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型與每日一AI知識英文學習。",
 );
 
 const sites = [
@@ -57,6 +57,14 @@ const sites = [
     sample: "It is easy to + verb.",
     tone: "pattern",
   },
+  {
+    href: "/ai",
+    label: "AI English",
+    title: "每日一AI知識英文學習",
+    description: "每天用一句英文認識 AI 概念、工具、風險與應用情境，同時累積科技英文詞彙。",
+    sample: "AI can help people find patterns in data.",
+    tone: "ai",
+  },
 ];
 
 export default async function PortalPage() {
@@ -69,7 +77,7 @@ export default async function PortalPage() {
           <p className="eyebrow">English Daily Hub</p>
           <h1>每日英文學習入口站</h1>
           <p>
-            這裡整合六個每日英文版本。選一個適合今天狀態的入口，讀一句、聽一句、練一個重點，慢慢累積英文感覺。
+            這裡整合七個每日英文版本。選一個適合今天狀態的入口，讀一句、聽一句、練一個重點，慢慢累積英文感覺。
           </p>
         </div>
         <nav className="main-nav portal-nav" aria-label="主要頁面">
@@ -79,11 +87,12 @@ export default async function PortalPage() {
           <Link href="/grammar">每日一文法</Link>
           <Link href="/phrase">每日一片語</Link>
           <Link href="/pattern">每日一句型</Link>
+          <Link href="/ai">每日一AI知識英文學習</Link>
           {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
         </nav>
       </section>
 
-      <section className="portal-grid" aria-label="六個英文學習站">
+      <section className="portal-grid" aria-label="七個英文學習站">
         {sites.map((site) => (
           <Link key={site.href} href={site.href} className={`portal-card ${site.tone}`}>
             <span>{site.label}</span>

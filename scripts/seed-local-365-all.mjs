@@ -48,6 +48,12 @@ const courses = [
     name: "每日一句型",
     description: "每天拆解一個實用英文句型，練會替換主詞、動詞和情境。",
   },
+  {
+    id: "ai-knowledge-english",
+    slug: "ai-knowledge-english",
+    name: "每日一AI知識英文學習",
+    description: "每天用一句英文認識 AI 概念、工具、風險與應用情境。",
+  },
 ];
 
 const dailyTopics = [
@@ -171,6 +177,37 @@ const patterns = [
   ["The more..., the more....", "越...就越...。", "The more A, the more B 用來說明兩件事一起增加。", "more: 更多；practice: 練習；confident: 有自信的", "The more I practice, the more confident I feel."],
   ["Not only..., but also....", "不只...也...。", "not only...but also... 用來連接兩個重點。", "not only: 不只；also: 也", "She is not only kind but also smart."],
   ["There is no need to + verb.", "沒有必要做某事。", "There is no need to 後接原形動詞，表示不需要。", "no need: 沒必要；worry: 擔心", "There is no need to worry."],
+];
+
+const aiTopics = [
+  ["AI can help people find patterns in data.", "AI 可以幫助人們在資料中找出模式。", "AI 可用來分析資料、找出重複特徵或提供預測。", "AI: 人工智慧；pattern: 模式；data: 資料", "AI can help doctors review medical images."],
+  ["A chatbot can answer questions in natural language.", "聊天機器人可以用自然語言回答問題。", "chatbot 指能以文字或語音和使用者互動的 AI 系統。", "chatbot: 聊天機器人；natural language: 自然語言", "A chatbot can help customers find basic information."],
+  ["Machine learning improves through examples.", "機器學習會透過範例改進。", "machine learning 指模型從資料範例中學習規則。", "machine learning: 機器學習；example: 範例", "Machine learning can improve when it receives better data."],
+  ["A prompt tells AI what to do.", "提示詞會告訴 AI 要做什麼。", "prompt 是給 AI 的指令、問題或上下文。", "prompt: 提示詞；instruction: 指令；context: 上下文", "A clear prompt can lead to a better answer."],
+  ["Generative AI can create text, images, and code.", "生成式 AI 可以創作文字、圖片和程式碼。", "generative AI 指能產生新內容的 AI。", "generative AI: 生成式AI；create: 創作；code: 程式碼", "Generative AI can draft an email quickly."],
+  ["A model learns from training data.", "模型會從訓練資料中學習。", "training data 是用來訓練模型的資料集合。", "model: 模型；training data: 訓練資料", "A model needs reliable training data."],
+  ["Bias can affect AI results.", "偏見可能影響 AI 結果。", "bias 指資料或設計造成的不公平傾向。", "bias: 偏見；result: 結果；fairness: 公平性", "Teams should test AI systems for bias."],
+  ["Human review can reduce AI mistakes.", "人工審查可以減少 AI 錯誤。", "human review 指由人檢查 AI 輸出的正確性。", "human review: 人工審查；mistake: 錯誤", "Human review is important for sensitive decisions."],
+  ["AI tools can summarize long documents.", "AI 工具可以摘要長文件。", "summarize 表示抓出重點並縮短內容。", "summarize: 摘要；document: 文件；tool: 工具", "AI tools can summarize meeting notes."],
+  ["Data privacy is important when using AI.", "使用 AI 時，資料隱私很重要。", "data privacy 指保護個人或敏感資料。", "data privacy: 資料隱私；sensitive: 敏感的", "Do not paste private data into public AI tools."],
+  ["AI can assist, but people remain responsible.", "AI 可以協助，但人仍然要負責。", "assist 表示協助而不是完全取代判斷。", "assist: 協助；responsible: 負責的", "AI can assist writers, but writers should check the final text."],
+  ["Automation can save time on repeated tasks.", "自動化可以節省重複任務的時間。", "automation 指讓系統自動完成固定流程。", "automation: 自動化；repeated task: 重複任務", "Automation can save time on weekly reports."],
+  ["AI search can combine retrieval and generation.", "AI 搜尋可以結合檢索與生成。", "retrieval 是先找資料，generation 是生成回答。", "retrieval: 檢索；generation: 生成", "AI search can retrieve sources before answering."],
+  ["An AI agent can plan and use tools.", "AI agent 可以規劃並使用工具。", "agent 指能根據目標執行多步驟工作的 AI 系統。", "agent: 代理系統；plan: 規劃；tool: 工具", "An AI agent can schedule tasks and summarize results."],
+  ["Evaluation helps measure AI quality.", "評估可以衡量 AI 品質。", "evaluation 指用標準測試輸出的正確性、可靠性或安全性。", "evaluation: 評估；quality: 品質；reliable: 可靠的", "Evaluation helps teams compare model performance."],
+  ["A hallucination is an incorrect AI answer.", "幻覺是 AI 給出的不正確回答。", "hallucination 指 AI 看似自信但內容錯誤。", "hallucination: 幻覺；incorrect: 不正確的", "Checking sources can reduce hallucination risk."],
+  ["Multimodal AI can understand more than text.", "多模態 AI 可以理解文字以外的內容。", "multimodal 指能處理文字、圖片、聲音或影片。", "multimodal: 多模態；image: 圖片；audio: 聲音", "Multimodal AI can describe an image in English."],
+  ["AI literacy helps people use tools wisely.", "AI 素養能幫助人們明智使用工具。", "AI literacy 指理解 AI 能力、限制與風險。", "AI literacy: AI素養；wisely: 明智地", "AI literacy is useful for students and workers."],
+  ["A workflow can include AI at one step.", "工作流程可以在某一步加入 AI。", "workflow 指完成任務的一連串步驟。", "workflow: 工作流程；step: 步驟", "A workflow can use AI to draft a first version."],
+  ["Clear instructions improve AI output.", "清楚的指令會改善 AI 輸出。", "output 指 AI 產生的回答或結果。", "instruction: 指令；output: 輸出；improve: 改善", "Clear instructions improve AI output in writing tasks."],
+];
+
+const aiFrames = [
+  "今天先理解這個 AI 概念，再試著用自己的話說一次。",
+  "注意句中的科技詞彙，試著把它放進另一個工作或學習情境。",
+  "讀完後想一個真實例子，確認你知道這個概念能用在哪裡。",
+  "把例句念三次，熟悉 AI 英文常見搭配。",
+  "留意這個概念的限制或風險，不要只記住工具好處。",
 ];
 
 const dailyFrames = [
@@ -326,6 +363,19 @@ function itemForCourse(courseId, day) {
   if (courseId === "pattern-english") {
     const topic = patterns[day % patterns.length];
     const note = patternFrames[Math.floor(day / patterns.length) % patternFrames.length];
+    return {
+      sentence: topic[0],
+      translation: topic[1],
+      grammarNote: topic[2],
+      usageNote: note,
+      vocabulary: topic[3],
+      example: topic[4],
+    };
+  }
+
+  if (courseId === "ai-knowledge-english") {
+    const topic = aiTopics[day % aiTopics.length];
+    const note = aiFrames[Math.floor(day / aiTopics.length) % aiFrames.length];
     return {
       sentence: topic[0],
       translation: topic[1],

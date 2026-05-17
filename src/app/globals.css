@@ -412,6 +412,13 @@ textarea {
   --soft: #edf6fb;
 }
 
+.ai-shell {
+  --accent: #3d6f4d;
+  --accent-dark: #284d36;
+  --warm: #8a4f66;
+  --soft: #edf8f0;
+}
+
 .grammar-title {
   font-size: clamp(1.8rem, 4.3vw, 4rem);
 }
@@ -422,6 +429,10 @@ textarea {
 
 .pattern-title {
   font-size: clamp(1.8rem, 4.5vw, 4.2rem);
+}
+
+.ai-title {
+  font-size: clamp(1.7rem, 4vw, 3.7rem);
 }
 
 .portal-shell {
@@ -503,6 +514,10 @@ textarea {
 
 .portal-card.pattern::before {
   background: #2f6f8f;
+}
+
+.portal-card.ai::before {
+  background: #3d6f4d;
 }
 
 .portal-card span {

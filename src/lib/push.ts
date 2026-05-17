@@ -2,6 +2,7 @@ import webpush from "web-push";
 import { ensureDatabase, prisma } from "./prisma";
 import {
   DEFAULT_COURSE,
+  AI_COURSE,
   GRAMMAR_COURSE,
   KIDS_COURSE,
   MOTIVATION_COURSE,
@@ -34,6 +35,10 @@ const pushMeta = {
   [PATTERN_COURSE]: {
     title: "每日一句型",
     url: "/pattern",
+  },
+  [AI_COURSE]: {
+    title: "每日一AI知識英文學習",
+    url: "/ai",
   },
 } satisfies Record<CourseSlug, { title: string; url: string }>;
 

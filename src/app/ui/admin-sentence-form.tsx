@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import {
   DEFAULT_COURSE,
+  AI_COURSE,
   GRAMMAR_COURSE,
   KIDS_COURSE,
   MOTIVATION_COURSE,
@@ -59,6 +60,7 @@ export function AdminSentenceForm({ defaultDate }: Props) {
           <option value={GRAMMAR_COURSE}>每日一文法</option>
           <option value={PHRASE_COURSE}>每日一片語</option>
           <option value={PATTERN_COURSE}>每日一句型</option>
+          <option value={AI_COURSE}>每日一AI知識英文學習</option>
         </select>
       </label>
       <label>

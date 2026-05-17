@@ -4,6 +4,7 @@ export const MOTIVATION_COURSE = "motivational-english";
 export const GRAMMAR_COURSE = "grammar-english";
 export const PHRASE_COURSE = "phrase-english";
 export const PATTERN_COURSE = "pattern-english";
+export const AI_COURSE = "ai-knowledge-english";
 
 export const courses = {
   [DEFAULT_COURSE]: {
@@ -41,6 +42,12 @@ export const courses = {
     slug: PATTERN_COURSE,
     name: "每日一句型",
     description: "每天拆解一個實用英文句型，練會替換主詞、動詞和情境。",
+  },
+  [AI_COURSE]: {
+    id: AI_COURSE,
+    slug: AI_COURSE,
+    name: "每日一AI知識英文學習",
+    description: "每天用一句英文認識 AI 概念、工具、風險與應用情境。",
   },
 } as const;
 

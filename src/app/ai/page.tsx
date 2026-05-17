@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
-import { getRecentSentences, getTodaySentence, MOTIVATION_COURSE } from "@/lib/sentences";
+import { getRecentSentences, getTodaySentence, AI_COURSE } from "@/lib/sentences";
 import { pageMetadata } from "@/lib/metadata";
 import { AuthPanel } from "../ui/auth-panel";
 import { PushButton } from "../ui/push-button";
@@ -8,85 +8,85 @@ import { SpeakButton } from "../ui/speak-button";
 
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
-  "每日一勵志英語",
-  "每天一句短而有力量的勵志英文，搭配中文解釋、句型重點、單字片語與朗讀練習。",
+  "每日一AI知識英文學習",
+  "每天用一句英文學習 AI 概念、工具、風險與應用情境，搭配中文解釋、關鍵詞與例句。",
 );
 
-export default async function MotivationPage() {
-  const [user, todaySentence, recentSentences] = await Promise.all([
+export default async function AIPage() {
+  const [user, todayLesson, recentLessons] = await Promise.all([
     getCurrentUser(),
-    getTodaySentence(MOTIVATION_COURSE),
-    getRecentSentences(MOTIVATION_COURSE),
+    getTodaySentence(AI_COURSE),
+    getRecentSentences(AI_COURSE),
   ]);
 
   return (
-    <main className="shell motivation-shell">
-      <section className="topbar" aria-label="主要頁面">
+    <main className="shell ai-shell">
+      <section className="topbar" aria-label="主選單">
         <div>
-          <p className="eyebrow">Motivational English</p>
-          <h1>每日一勵志英語</h1>
+          <p className="eyebrow">AI English</p>
+          <h1>每日一AI知識英文學習</h1>
         </div>
         <AuthPanel user={user} />
       </section>
 
-      <nav className="main-nav" aria-label="主要頁面">
-        <Link href="/">入口站</Link>
-        <Link href="/motivation">今日句子</Link>
-        <Link href="/motivation/history">歷史句子</Link>
+      <nav className="main-nav" aria-label="主選單">
+        <Link href="/">回首頁</Link>
+        <Link href="/ai">今日AI知識</Link>
+        <Link href="/ai/history">歷史AI知識</Link>
         <Link href="/daily">每日一句英文</Link>
         <Link href="/kids">小學生每日一句英語</Link>
+        <Link href="/motivation">每日一勵志英語</Link>
         <Link href="/grammar">每日一文法</Link>
         <Link href="/phrase">每日一片語</Link>
         <Link href="/pattern">每日一句型</Link>
-        <Link href="/ai">每日一AI知識英文學習</Link>
         {user?.isAdmin ? <Link href="/admin">管理後台</Link> : null}
       </nav>
 
       <section className="learning-layout">
         <article className="lesson">
           <div className="lesson-date">
-            {todaySentence.publishDate.toLocaleDateString("zh-TW", {
+            {todayLesson.publishDate.toLocaleDateString("zh-TW", {
               month: "long",
               day: "numeric",
               weekday: "long",
             })}
           </div>
-          <p className="sentence">{todaySentence.sentence}</p>
-          <SpeakButton text={todaySentence.sentence} />
-          <p className="translation">{todaySentence.translation}</p>
+          <p className="sentence ai-title">{todayLesson.sentence}</p>
+          <SpeakButton text={todayLesson.sentence} />
+          <p className="translation">{todayLesson.translation}</p>
 
           <div className="explain-grid">
             <section>
-              <h2>句型重點</h2>
-              <p>{todaySentence.grammarNote}</p>
+              <h2>AI概念</h2>
+              <p>{todayLesson.grammarNote}</p>
             </section>
             <section>
-              <h2>生活用法</h2>
-              <p>{todaySentence.usageNote}</p>
+              <h2>應用情境</h2>
+              <p>{todayLesson.usageNote}</p>
             </section>
             <section>
-              <h2>單字片語</h2>
-              <p>{todaySentence.vocabulary}</p>
+              <h2>關鍵詞</h2>
+              <p>{todayLesson.vocabulary}</p>
             </section>
             <section>
               <h2>延伸例句</h2>
-              <p>{todaySentence.example}</p>
+              <p>{todayLesson.example}</p>
             </section>
           </div>
         </article>
 
         <aside className="side-panel">
           <div className="panel-block">
-            <h2>手機推送</h2>
-            <p>登入後可訂閱每日勵志英文通知。每天一句短句，讓英文練習和自我鼓勵一起前進。</p>
-            <PushButton isSignedIn={Boolean(user)} courseId={MOTIVATION_COURSE} />
+            <h2>手機提醒</h2>
+            <p>登入後可以訂閱每日AI知識英文推播，用英文每天認識一個 AI 概念或應用。</p>
+            <PushButton isSignedIn={Boolean(user)} courseId={AI_COURSE} />
           </div>
 
           <div className="panel-block">
-            <h2>最近句子</h2>
+            <h2>最近AI知識</h2>
             <div className="history-list compact">
-              {recentSentences.map((item) => (
-                <Link key={item.id} href="/motivation/history" className="history-item">
+              {recentLessons.map((item) => (
+                <Link key={item.id} href="/ai/history" className="history-item">
                   <time>
                     {item.publishDate.toLocaleDateString("zh-TW", {
                       month: "numeric",
