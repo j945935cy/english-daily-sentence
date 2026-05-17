@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
   "首頁",
-  "十個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型、每日一AI知識英文學習、每日一旅遊英文學習、每日一生活英文學習與每日一商管英文學習。",
+  "十一個每日英文版本入口：每日一句英文、小學生每日一句英語、每日一勵志英語、每日一文法、每日一片語、每日一句型、每日一AI知識英文學習、每日一旅遊英文學習、每日一生活英文學習與每日一商管英文學習。",
 );
 
 const sites = [
@@ -101,7 +101,7 @@ export default async function PortalPage() {
           <p className="eyebrow">English Daily Hub</p>
           <h1>每日英文學習入口站</h1>
           <p>
-            這裡整合七個每日英文版本。選一個適合今天狀態的入口，讀一句、聽一句、練一個重點，慢慢累積英文感覺。
+            這裡整合十一個每日英文版本。選一個適合今天狀態的入口，讀一句、聽一句、練一個重點，慢慢累積英文感覺。
           </p>
         </div>
         <nav className="main-nav portal-nav" aria-label="主要頁面">
@@ -119,7 +119,7 @@ export default async function PortalPage() {
         </nav>
       </section>
 
-      <section className="portal-grid" aria-label="七個英文學習站">
+      <section className="portal-grid" aria-label="十一個英文學習站">
         {sites.map((site) => (
           <Link key={site.href} href={site.href} className={`portal-card ${site.tone}`}>
             <span>{site.label}</span>
