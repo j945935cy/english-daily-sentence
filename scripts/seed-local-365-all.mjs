@@ -4,6 +4,12 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const startDate = new Date(Date.UTC(2026, 4, 16));
+const selectedCourseIds = new Set(
+  (process.env.SEED_COURSES ?? "")
+    .split(",")
+    .map((courseId) => courseId.trim())
+    .filter(Boolean),
+);
 
 const courses = [
   {
@@ -334,7 +340,15 @@ function itemForCourse(courseId, day) {
 }
 
 async function main() {
-  for (const course of courses) {
+  const targetCourses = selectedCourseIds.size
+    ? courses.filter((course) => selectedCourseIds.has(course.id))
+    : courses;
+
+  if (targetCourses.length === 0) {
+    throw new Error(`No matching courses for SEED_COURSES=${process.env.SEED_COURSES}`);
+  }
+
+  for (const course of targetCourses) {
     await prisma.course.upsert({
       where: { id: course.id },
       update: {
@@ -346,7 +360,7 @@ async function main() {
     });
   }
 
-  for (const course of courses) {
+  for (const course of targetCourses) {
     for (let day = 0; day < 365; day += 1) {
       const data = {
         ...itemForCourse(course.id, day),
