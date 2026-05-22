@@ -21,43 +21,43 @@ const pushMeta = {
     url: "/daily",
   },
   [KIDS_COURSE]: {
-    title: "小學生每日一句英語",
+    title: "小學生每日英語",
     url: "/kids",
   },
   [MOTIVATION_COURSE]: {
-    title: "每日一勵志英語",
+    title: "每日勵志英文",
     url: "/motivation",
   },
   [GRAMMAR_COURSE]: {
-    title: "每日一文法",
+    title: "每日文法英文",
     url: "/grammar",
   },
   [PHRASE_COURSE]: {
-    title: "每日一片語",
+    title: "每日片語英文",
     url: "/phrase",
   },
   [PATTERN_COURSE]: {
-    title: "每日一句型",
+    title: "每日句型英文",
     url: "/pattern",
   },
   [AI_COURSE]: {
-    title: "每日一AI知識英文學習",
+    title: "每日 AI 知識英文",
     url: "/ai",
   },
   [TRAVEL_COURSE]: {
-    title: "每日一旅遊英語學習",
+    title: "每日旅遊英文",
     url: "/travel",
   },
   [LIFE_COURSE]: {
-    title: "每日一生活英語學習",
+    title: "每日生活英文",
     url: "/life",
   },
   [BUSINESS_COURSE]: {
-    title: "每日一商管英文學習",
+    title: "每日商管英文",
     url: "/business",
   },
   [CHAT_COURSE]: {
-    title: "每日一閒聊英語學習",
+    title: "每日閒聊英文",
     url: "/chat",
   },
 } satisfies Record<CourseSlug, { title: string; url: string }>;
