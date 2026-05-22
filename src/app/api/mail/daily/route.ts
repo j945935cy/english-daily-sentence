@@ -3,7 +3,8 @@ import { getCurrentUser } from "@/lib/auth";
 import { sendSiteMail } from "@/lib/mail";
 import { DEFAULT_COURSE, getTodaySentence } from "@/lib/sentences";
 
-const SITE_URL = process.env.SITE_URL ?? "https://english.happyebook.com";
+const DAILY_EMAIL_URL =
+  process.env.DAILY_EMAIL_URL ?? "https://english-daily-sentence.vercel.app/daily";
 
 export async function POST() {
   const user = await getCurrentUser();
@@ -13,7 +14,7 @@ export async function POST() {
   }
 
   const todaySentence = await getTodaySentence(DEFAULT_COURSE);
-  const dailyUrl = `${SITE_URL}/daily`;
+  const dailyUrl = DAILY_EMAIL_URL;
 
   await sendSiteMail({
     to: user.email,
