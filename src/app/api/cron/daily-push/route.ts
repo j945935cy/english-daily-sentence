@@ -20,9 +20,14 @@ export async function GET(request: Request) {
     })),
   );
 
+  const sent = results.reduce((sum, item) => sum + item.sent, 0);
+  const failed = results.reduce((sum, item) => sum + item.failed, 0);
+
+  console.info("daily-push cron completed", { sent, failed, results });
+
   return NextResponse.json({
-    sent: results.reduce((sum, item) => sum + item.sent, 0),
-    failed: results.reduce((sum, item) => sum + item.failed, 0),
+    sent,
+    failed,
     results,
   });
 }
