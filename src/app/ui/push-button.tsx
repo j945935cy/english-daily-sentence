@@ -14,6 +14,20 @@ function urlBase64ToUint8Array(base64String: string) {
   return Uint8Array.from([...rawData].map((char) => char.charCodeAt(0)));
 }
 
+function pushErrorMessage(error: unknown) {
+  if (error instanceof DOMException) {
+    if (error.name === "NotAllowedError") {
+      return "通知權限未開啟，請在瀏覽器網址列左側的網站設定允許通知。";
+    }
+
+    if (error.name === "InvalidStateError") {
+      return "瀏覽器保留了舊的推播訂閱，請重新整理後再按一次。";
+    }
+  }
+
+  return "訂閱失敗，請確認通知權限已允許，並重新整理頁面後再試。";
+}
+
 export function PushButton({ isSignedIn, courseId = "daily-english" }: Props) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,11 +56,19 @@ export function PushButton({ isSignedIn, courseId = "daily-english" }: Props) {
 
     try {
       const registration = await navigator.serviceWorker.register("/sw.js");
+      await navigator.serviceWorker.ready;
+
       const permission = await Notification.requestPermission();
 
       if (permission !== "granted") {
         setMessage("通知權限未開啟。");
         return;
+      }
+
+      const oldSubscription = await registration.pushManager.getSubscription();
+
+      if (oldSubscription) {
+        await oldSubscription.unsubscribe();
       }
 
       const subscription = await registration.pushManager.subscribe({
@@ -60,9 +82,15 @@ export function PushButton({ isSignedIn, courseId = "daily-english" }: Props) {
         body: JSON.stringify({ ...subscription.toJSON(), courseId }),
       });
 
-      setMessage(response.ok ? "已訂閱每日推送。" : "訂閱失敗，請重新登入後再試。");
-    } catch {
-      setMessage("訂閱失敗，請確認瀏覽器通知權限與 HTTPS 狀態。");
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        setMessage(data.error ?? "訂閱失敗，請重新登入後再試。");
+        return;
+      }
+
+      setMessage("已重新訂閱每日推送。");
+    } catch (error) {
+      setMessage(pushErrorMessage(error));
     } finally {
       setLoading(false);
     }
