@@ -23,8 +23,8 @@ export async function POST(request: Request) {
   }
 
   await prisma.pushSubscription.upsert({
-    where: { endpoint },
-    update: { userId: user.id, courseId, p256dh, auth },
+    where: { endpoint_courseId: { endpoint, courseId } },
+    update: { userId: user.id, p256dh, auth },
     create: { userId: user.id, courseId, endpoint, p256dh, auth },
   });
 

@@ -115,9 +115,11 @@ async function setupDatabase() {
   await prisma.$executeRawUnsafe(
     `ALTER TABLE "PushSubscription" ADD COLUMN IF NOT EXISTS "courseId" TEXT NOT NULL DEFAULT 'daily-english';`,
   );
+  await prisma.$executeRawUnsafe(`DROP INDEX IF EXISTS "PushSubscription_endpoint_key";`);
   await prisma.$executeRawUnsafe(
-    `CREATE UNIQUE INDEX IF NOT EXISTS "PushSubscription_endpoint_key" ON "PushSubscription"("endpoint");`,
+    `CREATE UNIQUE INDEX IF NOT EXISTS "PushSubscription_endpoint_courseId_key" ON "PushSubscription"("endpoint", "courseId");`,
   );
+  await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PushSubscription_courseId_idx" ON "PushSubscription"("courseId");`);
 
   await prisma.$executeRawUnsafe(`
     CREATE TABLE IF NOT EXISTS "LearningHistory" (
