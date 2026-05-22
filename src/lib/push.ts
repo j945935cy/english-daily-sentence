@@ -98,9 +98,16 @@ export async function sendDailySentencePush(courseId: CourseSlug = DEFAULT_COURS
 
   const subscriptions = await prisma.pushSubscription.findMany({
     where: { courseId },
+    include: {
+      user: {
+        select: { email: true },
+      },
+    },
   });
   let sent = 0;
   let failed = 0;
+  let cleaned = 0;
+  const failures: Array<{ email: string; statusCode?: number; reason: string }> = [];
 
   await Promise.all(
     subscriptions.map(async (item) => {
@@ -117,11 +124,23 @@ export async function sendDailySentencePush(courseId: CourseSlug = DEFAULT_COURS
           }),
         );
         sent += 1;
-      } catch {
+      } catch (error) {
         failed += 1;
+        const statusCode =
+          typeof error === "object" && error !== null && "statusCode" in error
+            ? Number(error.statusCode)
+            : undefined;
+        const reason = error instanceof Error ? error.message : "Unknown push error";
+
+        failures.push({ email: item.user.email, statusCode, reason });
+
+        if (statusCode === 403 || statusCode === 404 || statusCode === 410) {
+          await prisma.pushSubscription.delete({ where: { id: item.id } });
+          cleaned += 1;
+        }
       }
     }),
   );
 
-  return { sent, failed, skipped: false };
+  return { sent, failed, cleaned, skipped: false, failures };
 }

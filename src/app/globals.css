@@ -306,6 +306,23 @@ textarea {
   padding: 0 14px;
 }
 
+.danger-button {
+  min-height: 38px;
+  border: 1px solid rgba(164, 73, 47, 0.28);
+  border-radius: 8px;
+  background: #fff5f1;
+  color: var(--warm);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 0 14px;
+}
+
+.danger-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .form-message {
   color: var(--warm);
   font-size: 0.9rem;
@@ -359,6 +376,14 @@ textarea {
 .admin-main-column {
   display: grid;
   gap: 20px;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .admin-form {
@@ -627,6 +652,11 @@ textarea {
   line-height: 1.7;
 }
 
+.mail-test-form {
+  display: grid;
+  gap: 16px;
+}
+
 .analytics-panel {
   gap: 18px;
 }
@@ -700,6 +730,111 @@ textarea {
   margin-bottom: 14px;
 }
 
+.user-admin-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.user-form {
+  position: sticky;
+  top: 18px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+}
+
+.checkbox-row.compact {
+  font-size: 0.86rem;
+}
+
+.user-list-panel {
+  overflow: hidden;
+}
+
+.user-list-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  gap: 16px;
+  align-items: end;
+}
+
+.user-table {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.user-table-row {
+  min-width: 820px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(220px, 1.3fr) 110px minmax(160px, 0.9fr) 120px 170px;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+}
+
+.user-table-row:last-child {
+  border-bottom: 0;
+}
+
+.user-table-head {
+  background: var(--soft);
+  color: var(--accent-dark);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.user-table-row strong,
+.user-table-row small {
+  display: block;
+}
+
+.user-table-row small {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 4px;
+}
+
+.user-table-row mark {
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--accent-dark);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 9px;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.user-edit-row {
+  align-items: start;
+}
+
+.user-edit-row input {
+  margin-bottom: 8px;
+}
+
+.user-edit-row input:last-child {
+  margin-bottom: 0;
+}
+
 .section-title span {
   color: var(--muted);
   font-size: 0.9rem;
@@ -758,9 +893,15 @@ textarea {
   .page-heading,
   .portal-hero,
   .learning-layout,
-  .admin-layout {
+  .admin-layout,
+  .user-admin-layout,
+  .user-list-head {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .user-form {
+    position: static;
   }
 
   .auth-card {

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import type { Prisma } from "@prisma/client";
+import { PrismaPostgresAdapter } from "@prisma/adapter-ppg";
 import { PrismaPg } from "@prisma/adapter-pg";
 
 const globalForPrisma = globalThis as unknown as {
@@ -12,6 +13,15 @@ function createPrismaClient() {
   const connectionString = process.env.DATABASE_URL;
 
   if (connectionString?.startsWith("postgres")) {
+    const databaseHost = new URL(connectionString).host;
+
+    if (databaseHost.includes("db.prisma.io")) {
+      return new PrismaClient({
+        adapter: new PrismaPostgresAdapter({ connectionString }),
+        log,
+      });
+    }
+
     return new PrismaClient({
       adapter: new PrismaPg({ connectionString }),
       log,
