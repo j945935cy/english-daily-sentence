@@ -1,8 +1,23 @@
+self.addEventListener("install", (event) => {
+  event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(self.clients.claim());
+});
+
 self.addEventListener("push", (event) => {
-  const data = event.data ? event.data.json() : {};
-  const title = data.title || "每日一句英語";
+  let data = {};
+
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = {};
+  }
+
+  const title = data.title || "每日英語通知";
   const options = {
-    body: data.body || "今天的英語句子已送達。",
+    body: data.body || "今天的英文內容已準備好了。",
     data: { url: data.url || "/" },
   };
 
@@ -11,6 +26,7 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
+
   const url = event.notification.data?.url || "/";
-  event.waitUntil(clients.openWindow(url));
+  event.waitUntil(self.clients.openWindow(url));
 });
