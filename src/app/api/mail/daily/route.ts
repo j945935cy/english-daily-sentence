@@ -3,7 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { sendSiteMail } from "@/lib/mail";
 import { DEFAULT_COURSE, getTodaySentence } from "@/lib/sentences";
 
-const SITE_URL = "https://happyebook.com";
+const SITE_URL = process.env.SITE_URL ?? "https://english.happyebook.com";
 
 export async function POST() {
   const user = await getCurrentUser();
